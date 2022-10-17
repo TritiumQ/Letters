@@ -8,23 +8,40 @@ public class InteractiveSystem : MonoBehaviour
     [Header("是否允许交互")]
     public bool InvestgateFlag = true;
 
-    [SerializeField,Header("可交互物品列表")]
-    List<GameObject> InteractiveObjects;
+    GameObject InteractiveObject = null;
 
-    [SerializeField,Header("交互主体")]
-    GameObject Character;
-
-    [SerializeField,Header("交互指示")]
+    [SerializeField, Header("交互指示")]
     TextMeshProUGUI Tips;
+
+    private void Awake()
+    {
+        Tips.enabled = false;
+    }
 
     private void Update()
     {
-        
+        if (InvestgateFlag && InteractiveObject != null) 
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("调查" + InteractiveObject.name);
+            }
+        }
     }
 
-    private void Check()
+    public void StartInteracting(GameObject obj)
     {
-        
+        if(obj != null && obj.GetComponent<InteractiveTrigger>() != null)
+        {
+            //Debug.Log("正在接触" + obj.name);
+            InteractiveObject = obj;
+            Tips.enabled = true;
+		}
     }
 
+	public void StopInteracting()
+    {
+        Tips.enabled = false;
+		InteractiveObject = null;
+	}
 }
