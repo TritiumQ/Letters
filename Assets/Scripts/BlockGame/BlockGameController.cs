@@ -10,6 +10,7 @@ public class BlockGameController : MonoBehaviour
     public int colNum = 16;             //棋盘列数
     public int blackBlockRemain = 4;    //黑色格子剩余数
     public int blackBlockProbability;   //黑色格子生成几率
+    public int Probability = 5;         //生成几率
 
     public ArrayList blockList;         //存格子的动态数组
 
@@ -35,7 +36,7 @@ public class BlockGameController : MonoBehaviour
                 
                 Blocks b = AddBlocks(rowIndex,colIndex);
                 temp.Add(b);
-                Debug.Log(rowIndex + " " + colIndex + " ");
+                //Debug.Log(rowIndex + " " + colIndex + " ");
             }
 
             blockList.Add(temp);        //一行的所有元素存进temp后再存进
@@ -46,15 +47,16 @@ public class BlockGameController : MonoBehaviour
 
     public Blocks AddBlocks(int _rowIndex,int _colIndex)
     {
-        //
+        //问题：因为生成概率低，有可能出现一个棋盘上生成少于4个的情况
         Mathf.Clamp(blackBlockRemain, 0, 4);
 
-        blackBlockProbability = Random.Range(0, 100);
-        if(blackBlockRemain > 0 && blackBlockProbability < 2)
+        blackBlockProbability = Random.Range(0, 100);           //随机生成黑色方块概率
+        if(blackBlockRemain > 0 && blackBlockProbability < Probability)
         {
+            if (rowNum - _rowIndex == 5) Probability = 20;
             IsBlack = true;
             blackBlockRemain--;
-
+            Debug.Log(blackBlockRemain);
         }
         else IsBlack = false;
 
@@ -68,9 +70,16 @@ public class BlockGameController : MonoBehaviour
         return b;
     }
 
+    public void Erase(Blocks b)
+    {
+        Destroy(b.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
         
     }
+
+
 }
