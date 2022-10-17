@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
+    //x轴偏离值
+    public float Xoffset;
+    //y轴偏离值
+    public float Yoffset;
+
     public int rowIndex = 0;
     public int colIndex = 0;
 
     public GameObject[] blockArray;         //方格数组
-    //public int blocktype = 0;               //方格类型
-    public int blackBlockcnt = 4;           //生成黑色方块数
+    //public int blocktype = 0;             //方格类型
+    //public int blackprobability;            //黑块生成几率
 
     private GameObject blocks;
 
@@ -29,16 +34,22 @@ public class Blocks : MonoBehaviour
     {
         rowIndex = _rowIndex;
         colIndex = _colIndex;
-        this.transform.position = new Vector3(rowIndex,colIndex,0);
+        this.transform.position = new Vector3(colIndex + Xoffset , rowIndex + Yoffset , 0);
     }
 
-    public void RandomCreateBlocks(bool Ispink)
+    public void RandomCreateBlocks(bool Ispink,bool IsBlack)
     {
         int blockType;
 
         if (blocks != null) return;
         if(Ispink) blockType = 0;
         else blockType = 1;
+
+        if(IsBlack)
+        {
+            blockType = 2;
+            
+        }
 
         blocks = Instantiate(blockArray[blockType]) as GameObject;
         blocks.transform.parent = this.transform;
