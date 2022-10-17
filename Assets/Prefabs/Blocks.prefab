@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ee8588580ccaf41a421f0ef25fa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Xoffset: -12
+  Yoffset: -6.5
   rowIndex: 0
   colIndex: 0
   blockArray:
   - {fileID: 719759912127290468, guid: 75892a19aa51c5848a52abe85e468579, type: 3}
   - {fileID: 7726870162179558168, guid: a9df33cc7214563458c3817c929083b9, type: 3}
-  blocktype: 0
+  - {fileID: 330484541021849198, guid: 11668065508d19d4e9dbfc207827f988, type: 3}
   blackBlockcnt: 4
