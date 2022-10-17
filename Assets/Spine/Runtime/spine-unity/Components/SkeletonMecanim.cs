@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -39,15 +39,11 @@ namespace Spine.Unity {
 		public MecanimTranslator Translator { get { return translator; } }
 		private bool wasUpdatedAfterInit = true;
 
-		#region Bone and Initialization Callbacks ISkeletonAnimation
-		protected event ISkeletonAnimationDelegate _OnAnimationRebuild;
+		#region Bone Callbacks (ISkeletonAnimation)
 		protected event UpdateBonesDelegate _BeforeApply;
 		protected event UpdateBonesDelegate _UpdateLocal;
 		protected event UpdateBonesDelegate _UpdateWorld;
 		protected event UpdateBonesDelegate _UpdateComplete;
-
-		/// <summary>OnAnimationRebuild is raised after the SkeletonAnimation component is successfully initialized.</summary>
-		public event ISkeletonAnimationDelegate OnAnimationRebuild { add { _OnAnimationRebuild += value; } remove { _OnAnimationRebuild -= value; } }
 
 		/// <summary>
 		/// Occurs before the animations are applied.
@@ -71,9 +67,6 @@ namespace Spine.Unity {
 		/// Use this callback if you want to use bone world space values, but don't intend to modify bone local values.
 		/// This callback can also be used when setting world position and the bone matrix.</summary>
 		public event UpdateBonesDelegate UpdateComplete { add { _UpdateComplete += value; } remove { _UpdateComplete -= value; } }
-
-		[SerializeField] protected UpdateTiming updateTiming = UpdateTiming.InUpdate;
-		public UpdateTiming UpdateTiming { get { return updateTiming; } set { updateTiming = value; } }
 		#endregion
 
 		public override void Initialize (bool overwrite, bool quiet = false) {
@@ -91,28 +84,15 @@ namespace Spine.Unity {
 			if (translator == null) translator = new MecanimTranslator();
 			translator.Initialize(GetComponent<Animator>(), this.skeletonDataAsset);
 			wasUpdatedAfterInit = false;
-
-			if (_OnAnimationRebuild != null)
-				_OnAnimationRebuild(this);
 		}
 
-		public virtual void Update () {
-			if (!valid || updateTiming != UpdateTiming.InUpdate) return;
-			UpdateAnimation();
-		}
+		public void Update () {
+			if (!valid) return;
 
-		public virtual void FixedUpdate () {
-			if (!valid || updateTiming != UpdateTiming.InFixedUpdate) return;
-			UpdateAnimation();
-		}
-
-		protected void UpdateAnimation () {
 			wasUpdatedAfterInit = true;
-
 			// animation status is kept by Mecanim Animator component
 			if (updateMode <= UpdateMode.OnlyAnimationStatus)
 				return;
-
 			ApplyAnimation();
 		}
 
@@ -263,6 +243,7 @@ namespace Spine.Unity {
 				var clip = GetAnimation(info.clip);
 				if (clip == null)
 					return false;
+
 				var time = AnimationTime(stateInfo.normalizedTime, info.clip.length,
 										info.clip.isLooping, stateInfo.speed < 0);
 				weight = useClipWeight1 ? layerWeight : weight;
@@ -288,7 +269,7 @@ namespace Spine.Unity {
 					return false;
 
 				var time = AnimationTime(stateInfo.normalizedTime + interruptingClipTimeAddition,
-										info.clip.length, info.clip.isLooping, stateInfo.speed < 0);
+										info.clip.length, stateInfo.speed < 0);
 				weight = useClipWeight1 ? layerWeight : weight;
 				clip.Apply(skeleton, 0, time, info.clip.isLooping, null,
 							weight, layerBlendMode, MixDirection.In);
@@ -501,17 +482,17 @@ namespace Spine.Unity {
 			}
 
 			static float AnimationTime (float normalizedTime, float clipLength, bool loop, bool reversed) {
-				float time = ToSpineAnimationTime(normalizedTime, clipLength, loop, reversed);
+				float time = AnimationTime(normalizedTime, clipLength, reversed);
 				if (loop) return time;
 				const float EndSnapEpsilon = 1f / 30f; // Workaround for end-duration keys not being applied.
 				return (clipLength - time < EndSnapEpsilon) ? clipLength : time; // return a time snapped to clipLength;
 			}
 
-			static float ToSpineAnimationTime (float normalizedTime, float clipLength, bool loop, bool reversed) {
+			static float AnimationTime (float normalizedTime, float clipLength, bool reversed) {
 				if (reversed)
 					normalizedTime = (1 - normalizedTime);
 				if (normalizedTime < 0.0f)
-					normalizedTime = loop ? (normalizedTime % 1.0f) + 1.0f : 0.0f;
+					normalizedTime = (normalizedTime % 1.0f) + 1.0f;
 				return normalizedTime * clipLength;
 			}
 

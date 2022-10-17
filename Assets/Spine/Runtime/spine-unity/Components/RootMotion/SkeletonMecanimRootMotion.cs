@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -53,7 +53,6 @@ namespace Spine.Unity {
 		#endregion
 
 		protected Vector2 movementDelta;
-		protected float rotationDelta;
 
 		SkeletonMecanim skeletonMecanim;
 		public SkeletonMecanim SkeletonMecanim {
@@ -108,28 +107,13 @@ namespace Spine.Unity {
 			} else {
 				movementDelta -= weight * GetAnimationRootMotion(time, lastTime, animation);
 			}
-			if (transformRotation) {
-				if (!playsBackward) {
-					rotationDelta += weight * GetAnimationRootMotionRotation(lastTime, time, animation);
-				} else {
-					rotationDelta -= weight * GetAnimationRootMotionRotation(time, lastTime, animation);
-				}
-			}
 		}
 
 		protected override Vector2 CalculateAnimationsMovementDelta () {
-			// Note: movement delta is not gathered after animation but
+			// Note: movement delta is not gather after animation but
 			// in OnClipApplied after every applied animation.
 			Vector2 result = movementDelta;
 			movementDelta = Vector2.zero;
-			return result;
-		}
-
-		protected override float CalculateAnimationsRotationDelta () {
-			// Note: movement delta is not gathered after animation but
-			// in OnClipApplied after every applied animation.
-			float result = rotationDelta;
-			rotationDelta = 0;
 			return result;
 		}
 	}

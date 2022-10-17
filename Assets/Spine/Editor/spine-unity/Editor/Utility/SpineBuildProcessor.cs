@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2022, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -67,8 +67,7 @@ namespace Spine.Unity.Editor {
 		internal static void PreprocessBuild () {
 			isBuilding = true;
 #if HAS_ON_POSTPROCESS_PREFAB
-			if (SpineEditorUtilities.Preferences.removePrefabPreviewMeshes)
-				PreprocessSpinePrefabMeshes();
+			PreprocessSpinePrefabMeshes();
 #endif
 			PreprocessSpriteAtlases();
 		}
@@ -76,8 +75,7 @@ namespace Spine.Unity.Editor {
 		internal static void PostprocessBuild () {
 			isBuilding = false;
 #if HAS_ON_POSTPROCESS_PREFAB
-			if (SpineEditorUtilities.Preferences.removePrefabPreviewMeshes)
-				PostprocessSpinePrefabMeshes();
+			PostprocessSpinePrefabMeshes();
 #endif
 			PostprocessSpriteAtlases();
 		}
@@ -98,8 +96,8 @@ namespace Spine.Unity.Editor {
 #endif
 						prefabsToRestore.Add(assetPath);
 					}
+					EditorUtility.UnloadUnusedAssetsImmediate();
 				}
-				EditorUtility.UnloadUnusedAssetsImmediate();
 				AssetDatabase.StopAssetEditing();
 #if !HAS_SAVE_ASSET_IF_DIRTY
 				if (prefabAssets.Length > 0)
@@ -147,8 +145,8 @@ namespace Spine.Unity.Editor {
 #if HAS_SAVE_ASSET_IF_DIRTY
 					AssetDatabase.SaveAssetIfDirty(atlasAsset);
 #endif
+					EditorUtility.UnloadUnusedAssetsImmediate();
 				}
-				EditorUtility.UnloadUnusedAssetsImmediate();
 				AssetDatabase.StopAssetEditing();
 #if !HAS_SAVE_ASSET_IF_DIRTY
 				if (spriteAtlasAssets.Length > 0)

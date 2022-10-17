@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -209,9 +209,9 @@ namespace Spine.Unity {
 		#region Attachments
 		public static Material GetMaterial (this Attachment a) {
 			object rendererObject = null;
-			var renderableAttachment = a as IHasTextureRegion;
+			var renderableAttachment = a as IHasRendererObject;
 			if (renderableAttachment != null)
-				rendererObject = renderableAttachment.Region;
+				rendererObject = renderableAttachment.RendererObject;
 
 			if (rendererObject == null)
 				return null;

@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -38,10 +38,10 @@ namespace Spine {
 		internal ExposedList<IkConstraint> ikConstraints;
 		internal ExposedList<TransformConstraint> transformConstraints;
 		internal ExposedList<PathConstraint> pathConstraints;
-		internal ExposedList<SpringConstraint> springConstraints;
 		internal ExposedList<IUpdatable> updateCache = new ExposedList<IUpdatable>();
 		internal Skin skin;
 		internal float r = 1, g = 1, b = 1, a = 1;
+		internal float time;
 		private float scaleX = 1, scaleY = 1;
 		internal float x, y;
 
@@ -52,7 +52,6 @@ namespace Spine {
 		public ExposedList<Slot> DrawOrder { get { return drawOrder; } }
 		public ExposedList<IkConstraint> IkConstraints { get { return ikConstraints; } }
 		public ExposedList<PathConstraint> PathConstraints { get { return pathConstraints; } }
-		public ExposedList<SpringConstraint> SpringConstraints { get { return SpringConstraints; } }
 		public ExposedList<TransformConstraint> TransformConstraints { get { return transformConstraints; } }
 
 		public Skin Skin {
@@ -65,6 +64,7 @@ namespace Spine {
 		public float G { get { return g; } set { g = value; } }
 		public float B { get { return b; } set { b = value; } }
 		public float A { get { return a; } set { a = value; } }
+		public float Time { get { return time; } set { time = value; } }
 		public float X { get { return x; } set { x = value; } }
 		public float Y { get { return y; } set { y = value; } }
 		public float ScaleX { get { return scaleX; } set { scaleX = value; } }
@@ -120,67 +120,6 @@ namespace Spine {
 			foreach (PathConstraintData pathConstraintData in data.pathConstraints)
 				pathConstraints.Add(new PathConstraint(pathConstraintData, this));
 
-			springConstraints = new ExposedList<SpringConstraint>(data.springConstraints.Count);
-			foreach (SpringConstraintData springConstraintData in data.springConstraints)
-				springConstraints.Add(new SpringConstraint(springConstraintData, this));
-
-			UpdateCache();
-		}
-
-		/// <summary>Copy constructor.</summary>
-		public Skeleton (Skeleton skeleton) {
-			if (skeleton == null) throw new ArgumentNullException("skeleton", "skeleton cannot be null.");
-			data = skeleton.data;
-
-			bones = new ExposedList<Bone>(skeleton.bones.Count);
-			foreach (Bone bone in skeleton.bones) {
-				Bone newBone;
-				if (bone.parent == null)
-					newBone = new Bone(bone, this, null);
-				else {
-					Bone parent = bones.Items[bone.parent.data.index];
-					newBone = new Bone(bone, this, parent);
-					parent.children.Add(newBone);
-				}
-				bones.Add(newBone);
-			}
-
-			slots = new ExposedList<Slot>(skeleton.slots.Count);
-			Bone[] bonesItems = bones.Items;
-			foreach (Slot slot in skeleton.slots) {
-				Bone bone = bonesItems[slot.bone.data.index];
-				slots.Add(new Slot(slot, bone));
-			}
-
-			drawOrder = new ExposedList<Slot>(slots.Count);
-			Slot[] slotsItems = slots.Items;
-			foreach (Slot slot in skeleton.drawOrder)
-				drawOrder.Add(slotsItems[slot.data.index]);
-
-			ikConstraints = new ExposedList<IkConstraint>(skeleton.ikConstraints.Count);
-			foreach (IkConstraint ikConstraint in skeleton.ikConstraints)
-				ikConstraints.Add(new IkConstraint(ikConstraint, this));
-
-			transformConstraints = new ExposedList<TransformConstraint>(skeleton.transformConstraints.Count);
-			foreach (TransformConstraint transformConstraint in skeleton.transformConstraints)
-				transformConstraints.Add(new TransformConstraint(transformConstraint, this));
-
-			pathConstraints = new ExposedList<PathConstraint>(skeleton.pathConstraints.Count);
-			foreach (PathConstraint pathConstraint in skeleton.pathConstraints)
-				pathConstraints.Add(new PathConstraint(pathConstraint, this));
-
-			springConstraints = new ExposedList<SpringConstraint>(skeleton.springConstraints.Count);
-			foreach (SpringConstraint springConstraint in skeleton.springConstraints)
-				springConstraints.Add(new SpringConstraint(springConstraint, this));
-
-			skin = skeleton.skin;
-			r = skeleton.r;
-			g = skeleton.g;
-			b = skeleton.b;
-			a = skeleton.a;
-			scaleX = skeleton.scaleX;
-			scaleY = skeleton.scaleY;
-
 			UpdateCache();
 		}
 
@@ -209,13 +148,11 @@ namespace Spine {
 				}
 			}
 
-			int ikCount = this.ikConstraints.Count, transformCount = this.transformConstraints.Count, pathCount = this.pathConstraints.Count,
-				springCount = this.springConstraints.Count;
+			int ikCount = this.ikConstraints.Count, transformCount = this.transformConstraints.Count, pathCount = this.pathConstraints.Count;
 			IkConstraint[] ikConstraints = this.ikConstraints.Items;
 			TransformConstraint[] transformConstraints = this.transformConstraints.Items;
 			PathConstraint[] pathConstraints = this.pathConstraints.Items;
-			SpringConstraint[] springConstraints = this.springConstraints.Items;
-			int constraintCount = ikCount + transformCount + pathCount + springCount;
+			int constraintCount = ikCount + transformCount + pathCount;
 			for (int i = 0; i < constraintCount; i++) {
 				for (int ii = 0; ii < ikCount; ii++) {
 					IkConstraint constraint = ikConstraints[ii];
@@ -235,13 +172,6 @@ namespace Spine {
 					PathConstraint constraint = pathConstraints[ii];
 					if (constraint.data.order == i) {
 						SortPathConstraint(constraint);
-						goto continue_outer;
-					}
-				}
-				for (int ii = 0; ii < springCount; ii++) {
-					SpringConstraint constraint = springConstraints[ii];
-					if (constraint.data.order == i) {
-						SortSpringConstraint(constraint);
 						goto continue_outer;
 					}
 				}
@@ -278,34 +208,6 @@ namespace Spine {
 			}
 		}
 
-		private void SortTransformConstraint (TransformConstraint constraint) {
-			constraint.active = constraint.target.active
-				&& (!constraint.data.skinRequired || (skin != null && skin.constraints.Contains(constraint.data)));
-			if (!constraint.active) return;
-
-			SortBone(constraint.target);
-
-			var constrained = constraint.bones.Items;
-			int boneCount = constraint.bones.Count;
-			if (constraint.data.local) {
-				for (int i = 0; i < boneCount; i++) {
-					Bone child = constrained[i];
-					SortBone(child.parent);
-					SortBone(child);
-				}
-			} else {
-				for (int i = 0; i < boneCount; i++)
-					SortBone(constrained[i]);
-			}
-
-			updateCache.Add(constraint);
-
-			for (int i = 0; i < boneCount; i++)
-				SortReset(constrained[i].children);
-			for (int i = 0; i < boneCount; i++)
-				constrained[i].sorted = true;
-		}
-
 		private void SortPathConstraint (PathConstraint constraint) {
 			constraint.active = constraint.target.bone.active
 				&& (!constraint.data.skinRequired || (skin != null && skin.constraints.Contains(constraint.data)));
@@ -334,6 +236,34 @@ namespace Spine {
 				constrained[i].sorted = true;
 		}
 
+		private void SortTransformConstraint (TransformConstraint constraint) {
+			constraint.active = constraint.target.active
+				&& (!constraint.data.skinRequired || (skin != null && skin.constraints.Contains(constraint.data)));
+			if (!constraint.active) return;
+
+			SortBone(constraint.target);
+
+			var constrained = constraint.bones.Items;
+			int boneCount = constraint.bones.Count;
+			if (constraint.data.local) {
+				for (int i = 0; i < boneCount; i++) {
+					Bone child = constrained[i];
+					SortBone(child.parent);
+					SortBone(child);
+				}
+			} else {
+				for (int i = 0; i < boneCount; i++)
+					SortBone(constrained[i]);
+			}
+
+			updateCache.Add(constraint);
+
+			for (int i = 0; i < boneCount; i++)
+				SortReset(constrained[i].children);
+			for (int i = 0; i < boneCount; i++)
+				constrained[i].sorted = true;
+		}
+
 		private void SortPathConstraintAttachment (Skin skin, int slotIndex, Bone slotBone) {
 			foreach (var entry in skin.Attachments)
 				if (entry.SlotIndex == slotIndex) SortPathConstraintAttachment(entry.Attachment, slotBone);
@@ -353,23 +283,6 @@ namespace Spine {
 						SortBone(bones[pathBones[i++]]);
 				}
 			}
-		}
-
-		private void SortSpringConstraint (SpringConstraint constraint) {
-			constraint.active = !constraint.data.skinRequired || (skin != null && skin.constraints.Contains(constraint.data));
-			if (!constraint.active) return;
-
-			Object[] constrained = constraint.bones.Items;
-			int boneCount = constraint.bones.Count;
-			for (int i = 0; i < boneCount; i++)
-				SortBone((Bone)constrained[i]);
-
-			updateCache.Add(constraint);
-
-			for (int i = 0; i < boneCount; i++)
-				SortReset(((Bone)constrained[i]).children);
-			for (int i = 0; i < boneCount; i++)
-				((Bone)constrained[i]).sorted = true;
 		}
 
 		private void SortBone (Bone bone) {
@@ -457,7 +370,7 @@ namespace Spine {
 			for (int i = 0, n = this.bones.Count; i < n; i++)
 				bones[i].SetToSetupPose();
 
-			IkConstraint[] ikConstraints = this.ikConstraints.Items;
+			var ikConstraints = this.ikConstraints.Items;
 			for (int i = 0, n = this.ikConstraints.Count; i < n; i++) {
 				IkConstraint constraint = ikConstraints[i];
 				IkConstraintData data = constraint.data;
@@ -468,7 +381,7 @@ namespace Spine {
 				constraint.stretch = data.stretch;
 			}
 
-			TransformConstraint[] transformConstraints = this.transformConstraints.Items;
+			var transformConstraints = this.transformConstraints.Items;
 			for (int i = 0, n = this.transformConstraints.Count; i < n; i++) {
 				TransformConstraint constraint = transformConstraints[i];
 				TransformConstraintData data = constraint.data;
@@ -480,7 +393,7 @@ namespace Spine {
 				constraint.mixShearY = data.mixShearY;
 			}
 
-			PathConstraint[] pathConstraints = this.pathConstraints.Items;
+			var pathConstraints = this.pathConstraints.Items;
 			for (int i = 0, n = this.pathConstraints.Count; i < n; i++) {
 				PathConstraint constraint = pathConstraints[i];
 				PathConstraintData data = constraint.data;
@@ -489,20 +402,6 @@ namespace Spine {
 				constraint.mixRotate = data.mixRotate;
 				constraint.mixX = data.mixX;
 				constraint.mixY = data.mixY;
-			}
-
-			SpringConstraint[] springConstraints = this.springConstraints.Items;
-			for (int i = 0, n = this.springConstraints.Count; i < n; i++) {
-				SpringConstraint constraint = springConstraints[i];
-				SpringConstraintData data = constraint.data;
-				constraint.mix = data.mix;
-				constraint.friction = data.friction;
-				constraint.gravity = data.gravity;
-				constraint.wind = data.wind;
-				constraint.stiffness = data.stiffness;
-				constraint.damping = data.damping;
-				constraint.rope = data.rope;
-				constraint.stretch = data.stretch;
 			}
 		}
 
@@ -657,17 +556,8 @@ namespace Spine {
 			return null;
 		}
 
-		/// <summary>Finds a spring constraint by comparing each spring constraint's name. It is more efficient to cache the results of this
-		/// method than to call it repeatedly.</summary>
-		/// <returns>May be null.</returns>
-		public SpringConstraint FindSpringConstraint (String constraintName) {
-			if (constraintName == null) throw new ArgumentNullException("constraintName", "constraintName cannot be null.");
-			SpringConstraint[] springConstraints = this.springConstraints.Items;
-			for (int i = 0, n = this.springConstraints.Count; i < n; i++) {
-				SpringConstraint constraint = springConstraints[i];
-				if (constraint.data.name.Equals(constraintName)) return constraint;
-			}
-			return null;
+		public void Update (float delta) {
+			time += delta;
 		}
 
 		/// <summary>Returns the axis aligned bounding box (AABB) of the region and mesh attachments for the current pose.</summary>
@@ -687,12 +577,12 @@ namespace Spine {
 				int verticesLength = 0;
 				float[] vertices = null;
 				Attachment attachment = slot.attachment;
-				RegionAttachment region = attachment as RegionAttachment;
-				if (region != null) {
+				var regionAttachment = attachment as RegionAttachment;
+				if (regionAttachment != null) {
 					verticesLength = 8;
 					vertices = temp;
 					if (vertices.Length < 8) vertices = temp = new float[8];
-					region.ComputeWorldVertices(slot, temp, 0, 2);
+					regionAttachment.ComputeWorldVertices(slot.bone, temp, 0);
 				} else {
 					var meshAttachment = attachment as MeshAttachment;
 					if (meshAttachment != null) {
@@ -700,7 +590,7 @@ namespace Spine {
 						verticesLength = mesh.WorldVerticesLength;
 						vertices = temp;
 						if (vertices.Length < verticesLength) vertices = temp = new float[verticesLength];
-						mesh.ComputeWorldVertices(slot, 0, verticesLength, temp, 0, 2);
+						mesh.ComputeWorldVertices(slot, 0, verticesLength, temp, 0);
 					}
 				}
 

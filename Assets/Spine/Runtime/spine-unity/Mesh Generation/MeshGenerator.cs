@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -194,15 +194,13 @@ namespace Spine.Unity {
 
 				var regionAttachment = attachment as RegionAttachment;
 				if (regionAttachment != null) {
-					if (regionAttachment.Sequence != null) regionAttachment.Sequence.Apply(slot, regionAttachment);
-					rendererObject = regionAttachment.Region;
+					rendererObject = regionAttachment.RendererObject;
 					attachmentVertexCount = 4;
 					attachmentTriangleCount = 6;
 				} else {
 					var meshAttachment = attachment as MeshAttachment;
 					if (meshAttachment != null) {
-						if (meshAttachment.Sequence != null) meshAttachment.Sequence.Apply(slot, meshAttachment);
-						rendererObject = meshAttachment.Region;
+						rendererObject = meshAttachment.RendererObject;
 						attachmentVertexCount = meshAttachment.WorldVerticesLength >> 1;
 						attachmentTriangleCount = meshAttachment.Triangles.Length;
 					} else {
@@ -254,15 +252,15 @@ namespace Spine.Unity {
 				Slot slot = drawOrderItems[i];
 				if (!slot.Bone.Active) continue;
 				Attachment attachment = slot.Attachment;
-				var rendererAttachment = attachment as IHasTextureRegion;
+				var rendererAttachment = attachment as IHasRendererObject;
 				if (rendererAttachment != null) {
-					if (rendererAttachment.Sequence != null) rendererAttachment.Sequence.Apply(slot, rendererAttachment);
-					AtlasRegion atlasRegion = (AtlasRegion)rendererAttachment.Region;
+					AtlasRegion atlasRegion = (AtlasRegion)rendererAttachment.RendererObject;
 					Material material = (Material)atlasRegion.page.rendererObject;
 					if (lastRendererMaterial != material) {
 						if (lastRendererMaterial != null)
 							return true;
-						lastRendererMaterial = material;
+						else
+							lastRendererMaterial = material;
 					}
 				}
 			}
@@ -316,13 +314,12 @@ namespace Spine.Unity {
 				int attachmentVertexCount = 0, attachmentTriangleCount = 0;
 #endif
 
-				object region = null;
+				object rendererObject = null; // An AtlasRegion in plain Spine-Unity. Spine-TK2D hooks into TK2D's system. eventual source of Material object.
 				bool noRender = false; // Using this allows empty slots as separators, and keeps separated parts more stable despite slots being reordered
 
 				var regionAttachment = attachment as RegionAttachment;
 				if (regionAttachment != null) {
-					if (regionAttachment.Sequence != null) regionAttachment.Sequence.Apply(slot, regionAttachment);
-					region = regionAttachment.Region;
+					rendererObject = regionAttachment.RendererObject;
 #if SPINE_TRIANGLECHECK
 					attachmentVertexCount = 4;
 					attachmentTriangleCount = 6;
@@ -330,8 +327,7 @@ namespace Spine.Unity {
 				} else {
 					var meshAttachment = attachment as MeshAttachment;
 					if (meshAttachment != null) {
-						if (meshAttachment.Sequence != null) meshAttachment.Sequence.Apply(slot, meshAttachment);
-						region = meshAttachment.Region;
+						rendererObject = meshAttachment.RendererObject;
 #if SPINE_TRIANGLECHECK
 						attachmentVertexCount = meshAttachment.WorldVerticesLength >> 1;
 						attachmentTriangleCount = meshAttachment.Triangles.Length;
@@ -388,13 +384,12 @@ namespace Spine.Unity {
 					Material material;
 					if (isCustomSlotMaterialsPopulated) {
 						if (!customSlotMaterials.TryGetValue(slot, out material))
-							material = (Material)((AtlasRegion)region).page.rendererObject;
+							material = (Material)((AtlasRegion)rendererObject).page.rendererObject;
 					} else {
-						material = (Material)((AtlasRegion)region).page.rendererObject;
+						material = (Material)((AtlasRegion)rendererObject).page.rendererObject;
 					}
 #else
-					// An AtlasRegion in plain spine-unity, spine-TK2D hooks into TK2D's system. eventual source of Material object.
-					Material material = (region is Material) ? (Material)region : (Material)((AtlasRegion)region).page.rendererObject;
+					Material material = (rendererObject is Material) ? (Material)rendererObject : (Material)((AtlasRegion)rendererObject).page.rendererObject;
 #endif
 
 					if (current.forceSeparate || (current.rawVertexCount > 0 && !System.Object.ReferenceEquals(current.material, material))) { // Material changed. Add the previous submesh.
@@ -542,7 +537,7 @@ namespace Spine.Unity {
 				// Identify and prepare values.
 				var region = attachment as RegionAttachment;
 				if (region != null) {
-					region.ComputeWorldVertices(slot, workingVerts, 0);
+					region.ComputeWorldVertices(slot.Bone, workingVerts, 0);
 					uvs = region.UVs;
 					attachmentTriangleIndices = regionTriangles;
 					c.r = region.R; c.g = region.G; c.b = region.B; c.a = region.A;
@@ -832,7 +827,7 @@ namespace Spine.Unity {
 
 					var regionAttachment = attachment as RegionAttachment;
 					if (regionAttachment != null) {
-						regionAttachment.ComputeWorldVertices(slot, tempVerts, 0);
+						regionAttachment.ComputeWorldVertices(slot.Bone, tempVerts, 0);
 
 						float x1 = tempVerts[RegionAttachment.BLX], y1 = tempVerts[RegionAttachment.BLY];
 						float x2 = tempVerts[RegionAttachment.ULX], y2 = tempVerts[RegionAttachment.ULY];

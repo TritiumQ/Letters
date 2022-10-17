@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -124,7 +124,7 @@ namespace Spine.Unity {
 			if (!Application.isPlaying) {
 				skeletonRenderer.enabled = false;
 				skeletonRenderer.enabled = true;
-				skeletonRenderer.LateUpdateMesh();
+				skeletonRenderer.LateUpdate();
 			}
 #endif
 
@@ -187,9 +187,6 @@ namespace Spine.Unity {
 					mr.probeAnchor = probeAnchor;
 				}
 			}
-
-			if (skeletonRenderer.updateWhenInvisible != UpdateMode.FullUpdate)
-				skeletonRenderer.LateUpdateMesh();
 		}
 
 		public void OnDisable () {
@@ -197,8 +194,13 @@ namespace Spine.Unity {
 #if SPINE_OPTIONAL_RENDEROVERRIDE
 			skeletonRenderer.GenerateMeshOverride -= HandleRender;
 #endif
-			skeletonRenderer.LateUpdateMesh();
-			ClearPartsRendererMeshes();
+
+			skeletonRenderer.LateUpdate();
+
+			foreach (var partsRenderer in partsRenderers) {
+				if (partsRenderer != null)
+					partsRenderer.ClearMesh();
+			}
 		}
 
 		MaterialPropertyBlock copiedBlock;
@@ -260,13 +262,8 @@ namespace Spine.Unity {
 				if (currentRenderer != null)
 					partsRenderers[rendererIndex].ClearMesh();
 			}
+
 		}
 
-		protected void ClearPartsRendererMeshes () {
-			foreach (var partsRenderer in partsRenderers) {
-				if (partsRenderer != null)
-					partsRenderer.ClearMesh();
-			}
-		}
 	}
 }

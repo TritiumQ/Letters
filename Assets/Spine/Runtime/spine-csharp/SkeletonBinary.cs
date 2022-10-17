@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -60,9 +60,6 @@ namespace Spine {
 		public const int SLOT_RGBA2 = 3;
 		public const int SLOT_RGB2 = 4;
 		public const int SLOT_ALPHA = 5;
-
-		public const int ATTACHMENT_DEFORM = 0;
-		public const int ATTACHMENT_SEQUENCE = 1;
 
 		public const int PATH_POSITION = 0;
 		public const int PATH_SPACING = 1;
@@ -299,9 +296,9 @@ namespace Spine {
 				if (skin == null) throw new Exception("Skin not found: " + linkedMesh.skin);
 				Attachment parent = skin.GetAttachment(linkedMesh.slotIndex, linkedMesh.parent);
 				if (parent == null) throw new Exception("Parent mesh not found: " + linkedMesh.parent);
-				linkedMesh.mesh.TimelineAttachment = linkedMesh.inheritTimelines ? (VertexAttachment)parent : linkedMesh.mesh;
+				linkedMesh.mesh.DeformAttachment = linkedMesh.inheritDeform ? (VertexAttachment)parent : linkedMesh.mesh;
 				linkedMesh.mesh.ParentMesh = (MeshAttachment)parent;
-				if (linkedMesh.mesh.Sequence == null) linkedMesh.mesh.UpdateRegion();
+				linkedMesh.mesh.UpdateUVs();
 			}
 			linkedMeshes.Clear();
 
@@ -387,10 +384,9 @@ namespace Spine {
 				float width = input.ReadFloat();
 				float height = input.ReadFloat();
 				int color = input.ReadInt();
-				Sequence sequence = ReadSequence(input);
 
 				if (path == null) path = name;
-				RegionAttachment region = attachmentLoader.NewRegionAttachment(skin, name, path, sequence);
+				RegionAttachment region = attachmentLoader.NewRegionAttachment(skin, name, path);
 				if (region == null) return null;
 				region.Path = path;
 				region.x = x * scale;
@@ -404,8 +400,7 @@ namespace Spine {
 				region.g = ((color & 0x00ff0000) >> 16) / 255f;
 				region.b = ((color & 0x0000ff00) >> 8) / 255f;
 				region.a = ((color & 0x000000ff)) / 255f;
-				region.sequence = sequence;
-				if (sequence == null) region.UpdateRegion();
+				region.UpdateOffset();
 				return region;
 			}
 			case AttachmentType.Boundingbox: {
@@ -429,7 +424,6 @@ namespace Spine {
 				int[] triangles = ReadShortArray(input);
 				Vertices vertices = ReadVertices(input, vertexCount);
 				int hullLength = input.ReadInt(true);
-				Sequence sequence = ReadSequence(input);
 				int[] edges = null;
 				float width = 0, height = 0;
 				if (nonessential) {
@@ -439,7 +433,7 @@ namespace Spine {
 				}
 
 				if (path == null) path = name;
-				MeshAttachment mesh = attachmentLoader.NewMeshAttachment(skin, name, path, sequence);
+				MeshAttachment mesh = attachmentLoader.NewMeshAttachment(skin, name, path);
 				if (mesh == null) return null;
 				mesh.Path = path;
 				mesh.r = ((color & 0xff000000) >> 24) / 255f;
@@ -451,9 +445,8 @@ namespace Spine {
 				mesh.WorldVerticesLength = vertexCount << 1;
 				mesh.triangles = triangles;
 				mesh.regionUVs = uvs;
-				if (sequence == null) mesh.UpdateRegion();
+				mesh.UpdateUVs();
 				mesh.HullLength = hullLength << 1;
-				mesh.Sequence = sequence;
 				if (nonessential) {
 					mesh.Edges = edges;
 					mesh.Width = width * scale;
@@ -466,8 +459,7 @@ namespace Spine {
 				int color = input.ReadInt();
 				String skinName = input.ReadStringRef();
 				String parent = input.ReadStringRef();
-				bool inheritTimelines = input.ReadBoolean();
-				Sequence sequence = ReadSequence(input);
+				bool inheritDeform = input.ReadBoolean();
 				float width = 0, height = 0;
 				if (nonessential) {
 					width = input.ReadFloat();
@@ -475,19 +467,18 @@ namespace Spine {
 				}
 
 				if (path == null) path = name;
-				MeshAttachment mesh = attachmentLoader.NewMeshAttachment(skin, name, path, sequence);
+				MeshAttachment mesh = attachmentLoader.NewMeshAttachment(skin, name, path);
 				if (mesh == null) return null;
 				mesh.Path = path;
 				mesh.r = ((color & 0xff000000) >> 24) / 255f;
 				mesh.g = ((color & 0x00ff0000) >> 16) / 255f;
 				mesh.b = ((color & 0x0000ff00) >> 8) / 255f;
 				mesh.a = ((color & 0x000000ff)) / 255f;
-				mesh.Sequence = sequence;
 				if (nonessential) {
 					mesh.Width = width * scale;
 					mesh.Height = height * scale;
 				}
-				linkedMeshes.Add(new SkeletonJson.LinkedMesh(mesh, skinName, slotIndex, parent, inheritTimelines));
+				linkedMeshes.Add(new SkeletonJson.LinkedMesh(mesh, skinName, slotIndex, parent, inheritDeform));
 				return mesh;
 			}
 			case AttachmentType.Path: {
@@ -542,15 +533,6 @@ namespace Spine {
 			}
 			}
 			return null;
-		}
-
-		private Sequence ReadSequence (SkeletonInput input) {
-			if (!input.ReadBoolean()) return null;
-			Sequence sequence = new Sequence(input.ReadInt(true));
-			sequence.Start = input.ReadInt(true);
-			sequence.Digits = input.ReadInt(true);
-			sequence.SetupIndex = input.ReadInt(true);
-			return sequence;
 		}
 
 		private Vertices ReadVertices (SkeletonInput input, int vertexCount) {
@@ -922,76 +904,58 @@ namespace Spine {
 				}
 			}
 
-			// Attachment timelines.
+			// Deform timelines.
 			for (int i = 0, n = input.ReadInt(true); i < n; i++) {
 				Skin skin = skeletonData.skins.Items[input.ReadInt(true)];
 				for (int ii = 0, nn = input.ReadInt(true); ii < nn; ii++) {
 					int slotIndex = input.ReadInt(true);
 					for (int iii = 0, nnn = input.ReadInt(true); iii < nnn; iii++) {
 						String attachmentName = input.ReadStringRef();
-						Attachment attachment = skin.GetAttachment(slotIndex, attachmentName);
-						if (attachment == null) throw new SerializationException("Timeline attachment not found: " + attachmentName);
+						VertexAttachment attachment = (VertexAttachment)skin.GetAttachment(slotIndex, attachmentName);
+						if (attachment == null) throw new SerializationException("Vertex attachment not found: " + attachmentName);
+						bool weighted = attachment.Bones != null;
+						float[] vertices = attachment.Vertices;
+						int deformLength = weighted ? (vertices.Length / 3) << 1 : vertices.Length;
 
-						int timelineType = input.ReadByte(), frameCount = input.ReadInt(true), frameLast = frameCount - 1;
-						switch (timelineType) {
-						case ATTACHMENT_DEFORM: {
-							VertexAttachment vertexAttachment = (VertexAttachment)attachment;
-							bool weighted = vertexAttachment.Bones != null;
-							float[] vertices = vertexAttachment.Vertices;
-							int deformLength = weighted ? (vertices.Length / 3) << 1 : vertices.Length;
+						int frameCount = input.ReadInt(true), frameLast = frameCount - 1;
+						DeformTimeline timeline = new DeformTimeline(frameCount, input.ReadInt(true), slotIndex, attachment);
 
-							DeformTimeline timeline = new DeformTimeline(frameCount, input.ReadInt(true), slotIndex, vertexAttachment);
-
-							float time = input.ReadFloat();
-							for (int frame = 0, bezier = 0; ; frame++) {
-								float[] deform;
-								int end = input.ReadInt(true);
-								if (end == 0)
-									deform = weighted ? new float[deformLength] : vertices;
-								else {
-									deform = new float[deformLength];
-									int start = input.ReadInt(true);
-									end += start;
-									if (scale == 1) {
-										for (int v = start; v < end; v++)
-											deform[v] = input.ReadFloat();
-									} else {
-										for (int v = start; v < end; v++)
-											deform[v] = input.ReadFloat() * scale;
-									}
-									if (!weighted) {
-										for (int v = 0, vn = deform.Length; v < vn; v++)
-											deform[v] += vertices[v];
-									}
+						float time = input.ReadFloat();
+						for (int frame = 0, bezier = 0; ; frame++) {
+							float[] deform;
+							int end = input.ReadInt(true);
+							if (end == 0)
+								deform = weighted ? new float[deformLength] : vertices;
+							else {
+								deform = new float[deformLength];
+								int start = input.ReadInt(true);
+								end += start;
+								if (scale == 1) {
+									for (int v = start; v < end; v++)
+										deform[v] = input.ReadFloat();
+								} else {
+									for (int v = start; v < end; v++)
+										deform[v] = input.ReadFloat() * scale;
 								}
-								timeline.SetFrame(frame, time, deform);
-								if (frame == frameLast) break;
-								float time2 = input.ReadFloat();
-								switch (input.ReadByte()) {
-								case CURVE_STEPPED:
-									timeline.SetStepped(frame);
-									break;
-								case CURVE_BEZIER:
-									SetBezier(input, timeline, bezier++, frame, 0, time, time2, 0, 1, 1);
-									break;
+								if (!weighted) {
+									for (int v = 0, vn = deform.Length; v < vn; v++)
+										deform[v] += vertices[v];
 								}
-								time = time2;
 							}
-							timelines.Add(timeline);
-							break;
+							timeline.SetFrame(frame, time, deform);
+							if (frame == frameLast) break;
+							float time2 = input.ReadFloat();
+							switch (input.ReadByte()) {
+							case CURVE_STEPPED:
+								timeline.SetStepped(frame);
+								break;
+							case CURVE_BEZIER:
+								SetBezier(input, timeline, bezier++, frame, 0, time, time2, 0, 1, 1);
+								break;
+							}
+							time = time2;
 						}
-						case ATTACHMENT_SEQUENCE: {
-							SequenceTimeline timeline = new SequenceTimeline(frameCount, slotIndex, attachment);
-							for (int frame = 0; frame < frameCount; frame++) {
-								float time = input.ReadFloat();
-								int modeAndIndex = input.ReadInt();
-								timeline.SetFrame(frame, time, (SequenceMode)(modeAndIndex & 0xf), modeAndIndex >> 4,
-									input.ReadFloat());
-							}
-							timelines.Add(timeline);
-							break;
-						} // end case
-						} // end switch
+						timelines.Add(timeline);
 					}
 				}
 			}

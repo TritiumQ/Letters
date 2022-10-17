@@ -1,8 +1,8 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated January 1, 2020. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2020, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
@@ -70,7 +70,7 @@ namespace Spine.Unity {
 		public bool UpdateBlendmodeMaterialsRequiredState (SkeletonData skeletonData) {
 			requiresBlendModeMaterials = false;
 
-			if (skeletonData == null) return false;
+			if (skeletonData == null) throw new ArgumentNullException("skeletonData");
 
 			var skinEntries = new List<Skin.SkinEntry>();
 			var slotsItems = skeletonData.Slots.Items;
@@ -84,7 +84,7 @@ namespace Spine.Unity {
 					skin.GetAttachments(slotIndex, skinEntries);
 
 				foreach (var entry in skinEntries) {
-					if (entry.Attachment is IHasTextureRegion) {
+					if (entry.Attachment is IHasRendererObject) {
 						requiresBlendModeMaterials = true;
 						return true;
 					}
@@ -125,20 +125,10 @@ namespace Spine.Unity {
 					skin.GetAttachments(slotIndex, skinEntries);
 
 				foreach (var entry in skinEntries) {
-					var renderableAttachment = entry.Attachment as IHasTextureRegion;
+					var renderableAttachment = entry.Attachment as IHasRendererObject;
 					if (renderableAttachment != null) {
-						if (renderableAttachment.Region != null) {
-							renderableAttachment.Region = CloneAtlasRegionWithMaterial(
-							(AtlasRegion)renderableAttachment.Region, replacementMaterials);
-						} else {
-							if (renderableAttachment.Sequence != null) {
-								var regions = renderableAttachment.Sequence.Regions;
-								for (int i = 0; i < regions.Length; ++i) {
-									regions[i] = CloneAtlasRegionWithMaterial(
-										(AtlasRegion)regions[i], replacementMaterials);
-								}
-							}
-						}
+						renderableAttachment.RendererObject = CloneAtlasRegionWithMaterial(
+							(AtlasRegion)renderableAttachment.RendererObject, replacementMaterials);
 					}
 				}
 			}
