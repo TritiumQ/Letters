@@ -15,7 +15,7 @@ public class InteractiveSystem : MonoBehaviour
 
     private void Awake()
     {
-        Tips.enabled = false;
+		Tips.enabled = false;
     }
 
     private void Update()
@@ -26,6 +26,10 @@ public class InteractiveSystem : MonoBehaviour
             {
                 Debug.Log("调查" + InteractiveObject.name);
             }
+        }
+        if(Tips == null)
+        {
+            Debug.Log("Tips已销毁");
         }
     }
 
