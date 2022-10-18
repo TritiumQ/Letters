@@ -25,7 +25,7 @@ public class InteractiveTrigger : MonoBehaviour
 	{
 		if (system != null)
 		{
-			//Debug.Log("Exit");
+			Debug.Log("Exit");
 			system.StopInteracting();
 		}
 	}

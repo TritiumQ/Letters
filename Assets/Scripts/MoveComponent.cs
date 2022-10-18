@@ -8,7 +8,7 @@ public class MoveComponent : MonoBehaviour
     public bool MoveFlag = true;
     public float MoveSpeed = 100f;
     public bool RunFlag = true;
-	const float RunRate = 1.5f;
+	public float RunRate = 1.5f;
 
     private void Update()
     {
@@ -21,7 +21,7 @@ public class MoveComponent : MonoBehaviour
 		{
 			if (Input.GetKey(KeyCode.LeftArrow))
 			{
-				float left = -MoveSpeed * Time.deltaTime * 3;
+				float left = -MoveSpeed * Time.deltaTime * 10;
 				if (Input.GetKey(KeyCode.LeftShift) && RunFlag)
 				{
 					left *= RunRate;
@@ -30,7 +30,7 @@ public class MoveComponent : MonoBehaviour
 			}
 			if (Input.GetKey(KeyCode.RightArrow))
 			{
-				float right = MoveSpeed * Time.deltaTime * 3;
+				float right = MoveSpeed * Time.deltaTime * 10;
 				if (Input.GetKey(KeyCode.LeftShift) && RunFlag)
 				{
 					right *= RunRate;
