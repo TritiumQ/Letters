@@ -12,16 +12,18 @@ public class Blocks : MonoBehaviour
     public int rowIndex = 0;
     public int colIndex = 0;
 
+    int blockType;
+
     public GameObject[] blockArray;         //方格数组
-    //public int blocktype = 0;             //方格类型
-    //public int blackprobability;            //黑块生成几率
+
+    public BlockGameController controller;  //与BlockGameController进行挂接
 
     private GameObject blocks;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GameObject.Find("GameController").GetComponent<BlockGameController>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class Blocks : MonoBehaviour
 
     public void RandomCreateBlocks(bool Ispink,bool IsBlack)
     {
-        int blockType;
+        
 
         if (blocks != null) return;
         if(Ispink) blockType = 0;
@@ -48,11 +50,21 @@ public class Blocks : MonoBehaviour
         if(IsBlack)
         {
             blockType = 2;
-            
         }
 
         blocks = Instantiate(blockArray[blockType]) as GameObject;
         blocks.transform.parent = this.transform;
+        
+    }
+
+    public void OnMouseDown()                   //按下键盘时将是黑色方块的进行Destory
+    {
+        //Debug.Log("row " + this.rowIndex + " col " + this.colIndex);
+        Debug.Log("block： " + this.GetComponent<Blocks>().blockType);
+        if (this.GetComponent<Blocks>().blockType == 2)
+        {
+            controller.Erase(this);
+        }
         
     }
 }
