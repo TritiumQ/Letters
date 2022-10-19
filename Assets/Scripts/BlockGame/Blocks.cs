@@ -15,11 +15,8 @@ public class Blocks : MonoBehaviour
     int blockType;
 
     public GameObject[] blockArray;         //方格数组
-    //public int blocktype = 0;             //方格类型
-    //public int blackprobability;          //黑块生成几率
 
     public BlockGameController controller;  //与BlockGameController进行挂接
-
 
     private GameObject blocks;
 
@@ -53,7 +50,6 @@ public class Blocks : MonoBehaviour
         if(IsBlack)
         {
             blockType = 2;
-            
         }
 
         blocks = Instantiate(blockArray[blockType]) as GameObject;
@@ -63,8 +59,12 @@ public class Blocks : MonoBehaviour
 
     public void OnMouseDown()                   //按下键盘时将是黑色方块的进行Destory
     {
-        Debug.Log("row " + this.rowIndex + " col " + this.colIndex);
-        controller.Erase(this);
+        //Debug.Log("row " + this.rowIndex + " col " + this.colIndex);
+        Debug.Log("block： " + this.GetComponent<Blocks>().blockType);
+        if (this.GetComponent<Blocks>().blockType == 2)
+        {
+            controller.Erase(this);
+        }
         
     }
 }

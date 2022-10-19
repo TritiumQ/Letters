@@ -6,13 +6,19 @@ public class BlockGameController : MonoBehaviour
 {
     public Blocks blocks;               //与每一格的Blocks脚本进行挂接
 
+    [Header("BOARDSPAWN")]
     public int rowNum = 16;             //棋盘行数                
     public int colNum = 16;             //棋盘列数
     public int blackBlockRemain = 4;    //黑色格子剩余数
     public int blackBlockProbability;   //黑色格子生成几率
     public int Probability = 5;         //生成几率
 
-    public ArrayList blockList;         //存格子的动态数组
+    [Header("GAMECONTROL")]
+    public int gameRound = 5;           //游戏轮数
+    public int ClickBlockNum;           //目前已点方块数
+
+
+    ArrayList blockList;                //存格子的动态数组
 
     private bool Ispink;                //是否是粉格子
     private bool IsEven;                //是否为偶数行
@@ -24,6 +30,7 @@ public class BlockGameController : MonoBehaviour
     {
         blockList = new ArrayList();    //初始化
 
+        
 
         for(int rowIndex = 0; rowIndex < rowNum; rowIndex++)
         {
