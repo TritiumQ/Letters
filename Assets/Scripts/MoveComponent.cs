@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,16 @@ public class MoveComponent : MonoBehaviour
     public float MoveSpeed = 100f;
     public bool RunFlag = true;
 	public float RunRate = 1.5f;
+	public bool EnableAnimation = true;
 
-    private void Update()
+	SkeletonGraphic SG;
+
+	private void Awake()
+	{
+		SG = gameObject.GetComponent<SkeletonGraphic>();
+	}
+
+	private void Update()
     {
 		Move();
     }
@@ -27,6 +36,10 @@ public class MoveComponent : MonoBehaviour
 					left *= RunRate;
 				}
 				gameObject.transform.Translate(left, 0, 0);
+				if(EnableAnimation)
+				{
+					SG.AnimationState.SetAnimation(0, "ZL", true);
+				}
 			}
 			if (Input.GetKey(KeyCode.RightArrow))
 			{
@@ -36,7 +49,20 @@ public class MoveComponent : MonoBehaviour
 					right *= RunRate;
 				}
 				gameObject.transform.Translate(right, 0, 0);
+				if (EnableAnimation)
+				{
+					SG.AnimationState.SetAnimation(0, "ZL", true);
+				}
+			}
+			if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+			{
+				if (EnableAnimation)
+				{
+					SG.AnimationState.SetAnimation(0, "animation", true);
+				}
 			}
 		}
 	}
+
+
 }
