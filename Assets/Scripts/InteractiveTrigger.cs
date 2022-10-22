@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 //using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractiveTrigger : MonoBehaviour
 {
 	InteractiveSystem system;
+
+	public bool EnableGlow;
+
+	[SerializeField]
+	Image thisImage;
 
 	private void Awake()
 	{
@@ -29,5 +36,4 @@ public class InteractiveTrigger : MonoBehaviour
 			system.StopInteracting();
 		}
 	}
-
 }

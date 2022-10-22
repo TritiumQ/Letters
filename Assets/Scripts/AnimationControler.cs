@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AnimationControler : MonoBehaviour
 {
-	[SerializeField, Header("CurrentState")]
+	[SerializeField]
 	AnimState CurrentState, PreviousState;
 	bool facingLeft;
 
@@ -16,6 +16,7 @@ public class AnimationControler : MonoBehaviour
 	public SkeletonGraphic skeleton;
 
 	public string horizontalAxis = "Horizontal";
+
 	public AnimationReferenceAsset run, idle, walk;
 
 	private void Update()
@@ -27,7 +28,7 @@ public class AnimationControler : MonoBehaviour
 
 		if ((skeleton.Skeleton.ScaleX < 0) != facingLeft)
 		{
-			Turn(facingLeft);
+			Turn();
 		}
 
 		if (PreviousState != CurrentState)
@@ -49,8 +50,7 @@ public class AnimationControler : MonoBehaviour
 		}
 		else if(newState == AnimState.Running)
 		{
-			//nextAnimation = run;
-			nextAnimation = walk;
+			nextAnimation = run;
 		}
 		else
 		{
@@ -59,8 +59,10 @@ public class AnimationControler : MonoBehaviour
 
 		skeleton.AnimationState.SetAnimation(0, nextAnimation, true);
 	}
-
-	void Turn(bool facingLeft)
+	/// <summary>
+	/// ×ªÏò
+	/// </summary>
+	void Turn()
 	{
 		skeleton.Skeleton.ScaleX = facingLeft ? -1f : 1f;
 	}
@@ -76,7 +78,6 @@ public class AnimationControler : MonoBehaviour
 		}
 
 		CurrentState = (speed == 0) ? AnimState.Idle : AnimState.Walking;
-
 	}
 }
 
