@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6100591876629239732}
   - component: {fileID: -35545454993906704}
-  - component: {fileID: -2349590877885140856}
+  - component: {fileID: -353183033144506153}
   m_Layer: 0
   m_Name: Blocks
   m_TagString: Untagged
@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 7726870162179558168, guid: a9df33cc7214563458c3817c929083b9, type: 3}
   - {fileID: 330484541021849198, guid: 11668065508d19d4e9dbfc207827f988, type: 3}
   controller: {fileID: 0}
---- !u!61 &-2349590877885140856
+--- !u!61 &-353183033144506153
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
