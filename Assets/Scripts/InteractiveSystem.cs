@@ -30,7 +30,8 @@ public class InteractiveSystem : MonoBehaviour
         }
     }
 
-    public void StartInteracting(GameObject obj)
+	#region APIs
+	public void StartInteracting(GameObject obj)
     {
         if(obj != null && obj.GetComponent<InteractiveTrigger>() != null)
         {
@@ -45,4 +46,6 @@ public class InteractiveSystem : MonoBehaviour
         Tips.enabled = false;
 		InteractiveObject = null;
 	}
+	#endregion
+
 }
