@@ -6,7 +6,7 @@ using TMPro;
 public class InteractiveSystem : MonoBehaviour
 {
     [Header("是否允许交互")]
-    public bool InvestgateFlag = true;
+    public bool EnableIteraction = true;
 
     GameObject InteractiveObject = null;
 
@@ -20,16 +20,12 @@ public class InteractiveSystem : MonoBehaviour
 
     private void Update()
     {
-        if (InvestgateFlag && InteractiveObject != null) 
+        if (EnableIteraction && InteractiveObject != null) 
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("调查" + InteractiveObject.name);
             }
-        }
-        if(Tips == null)
-        {
-            Debug.Log("Tips已销毁");
         }
     }
 

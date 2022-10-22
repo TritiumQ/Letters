@@ -10,13 +10,16 @@ public class MoveComponent : MonoBehaviour
     public float MoveSpeed = 100f;
     public bool RunFlag = true;
 	public float RunRate = 1.5f;
-	public bool EnableAnimation = true;
+	public bool EnableAnimation = false;
 
 	SkeletonGraphic SG;
 
 	private void Awake()
 	{
-		SG = gameObject.GetComponent<SkeletonGraphic>();
+		if(EnableAnimation)
+		{
+			SG = gameObject.GetComponent<SkeletonGraphic>();
+		}
 	}
 
 	private void Update()
