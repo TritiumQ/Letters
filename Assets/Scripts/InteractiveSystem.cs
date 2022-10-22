@@ -24,6 +24,7 @@ public class InteractiveSystem : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
+                //TODO 调查接口
                 Debug.Log("调查" + InteractiveObject.name);
             }
         }
