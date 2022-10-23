@@ -9,7 +9,6 @@ public class OptionData
 	public float EffectVolume;
 
 	public ResolutionOption Resolution;
-	public RefreshRateOption RefreshRate;
 	public bool FullScreen;
 	
 	public OptionData()
@@ -19,7 +18,6 @@ public class OptionData
 		MusicVolume = OptionUtility.DefaultMusicVolume;
 		EffectVolume = OptionUtility.DefaultEffectVolume;
 		Resolution = OptionUtility.DefaultResolution;
-		RefreshRate = OptionUtility.DefaultRefreshRate;
 		FullScreen = OptionUtility.DefaultFullScreen;
 
 	}
@@ -30,8 +28,7 @@ public class OptionData
 			float globalVolume, 
 			float musicVolume, 
 			float effectVolume, 
-			ResolutionOption resolutionOption, 
-			RefreshRateOption refreshRate, 
+			ResolutionOption resolutionOption,
 			bool fullScreen
 		)
 	{
@@ -40,27 +37,41 @@ public class OptionData
 		MusicVolume = musicVolume;
 		EffectVolume = effectVolume;
 		Resolution = resolutionOption;
-		RefreshRate = refreshRate;
 		FullScreen = fullScreen;
+	}
+
+	public void SetResolutionDefault()
+	{
+		Resolution = OptionUtility.DefaultResolution;
+		FullScreen = OptionUtility.DefaultFullScreen;
+	}
+
+	public void SetVolumeDefault()
+	{
+		EnableAudio = OptionUtility.DefaultEnableAudio;
+		GlobalVolume = OptionUtility.DefaultGlobalVolume;
+		MusicVolume = OptionUtility.DefaultMusicVolume;
+		EffectVolume = OptionUtility.DefaultEffectVolume;
+	}
+
+	public void SetDefault()
+	{
+		EnableAudio = OptionUtility.DefaultEnableAudio;
+		GlobalVolume = OptionUtility.DefaultGlobalVolume;
+		MusicVolume = OptionUtility.DefaultMusicVolume;
+		EffectVolume = OptionUtility.DefaultEffectVolume;
+		Resolution = OptionUtility.DefaultResolution;
+		FullScreen = OptionUtility.DefaultFullScreen;
 	}
 }
 
 [System.Serializable]
 public enum ResolutionOption
 {
-	rDefault,
 	r1920x1080,
 	r1366x768,
 	r1280x720,
 	r960x540,
 	r640x360,
 	r320x180,
-}
-
-[System.Serializable]
-public enum RefreshRateOption
-{
-	rDefault,
-	r30,
-	r60,
 }

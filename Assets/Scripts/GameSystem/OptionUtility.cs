@@ -6,8 +6,13 @@ internal static class OptionUtility
     /// <summary>
     /// 默认配置文件储存路径
     /// </summary>
-    public static readonly string DefaultPath = Application.streamingAssetsPath + "/Option.json";
+    public static readonly string DefaultPath = Application.streamingAssetsPath + "/config.json";
 
+    /// <summary>
+    /// 保存配置文件
+    /// </summary>
+    /// <param name="data">配置文件数据</param>
+    /// <returns></returns>
     public static bool SaveOptionDataToJson(OptionData data)
     {
         if(data == null) return false;
@@ -21,20 +26,34 @@ internal static class OptionUtility
         return true;
     }
 
+    /// <summary>
+    /// 获取配置文件，当配置文件不存在时将会返回默认配置并创建新配置文件
+    /// </summary>
+    /// <returns></returns>
     public static OptionData LoadOptionDataFromJson()
     {
-        OptionData optionData = null;
-        FileStream fs = new FileStream(DefaultPath, FileMode.Open, FileAccess.Read);
-        string json = string.Empty;
-        if(fs.CanRead)
+		OptionData optionData = null;
+		if (File.Exists(DefaultPath))
         {
-			StreamReader sr = new StreamReader(fs);
-            json = sr.ReadToEnd();
-            if(json != string.Empty)
-            {
-                JsonUtility.FromJsonOverwrite(json, optionData);
-            }
+			FileStream fs = new FileStream(DefaultPath, FileMode.Open, FileAccess.Read);
+			string json = string.Empty;
+			if (fs.CanRead)
+			{
+				StreamReader sr = new StreamReader(fs);
+				json = sr.ReadToEnd();
+				sr.Close();
+				if (json != string.Empty)
+				{
+					optionData = JsonUtility.FromJson<OptionData>(json);
+				}
+			}
+			fs.Close();
 		}
+        if(optionData == null)
+        {
+            optionData = new OptionData();
+            SaveOptionDataToJson(optionData);
+        }
         return optionData;
     }
 
@@ -45,7 +64,6 @@ internal static class OptionUtility
 	public static readonly float DefaultEffectVolume = 50f;
 
 	public static readonly ResolutionOption DefaultResolution = ResolutionOption.r1920x1080;
-	public static readonly RefreshRateOption DefaultRefreshRate = RefreshRateOption.r60;
 	public static readonly bool DefaultFullScreen = true;
 	#endregion
 
