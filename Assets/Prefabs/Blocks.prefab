@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Xoffset: -12
-  Yoffset: -6.5
+  Yoffset: -7.6
   rowIndex: 0
   colIndex: 0
   blockArray:

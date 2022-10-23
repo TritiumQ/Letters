@@ -53,32 +53,47 @@ public class Blocks : MonoBehaviour
         else blockType = 1;
 
         blocks = Instantiate(blockArray[blockType]) as GameObject;
+        //blocks = Instantiate(blockArray[2]) as GameObject;          //生成一个黑色方块
+
+        //Transform black = transform.Find("BlackBlocks(Clone)");     //并将黑色方块设置为false
+        //black.gameObject.SetActive(false);
         blocks.transform.parent = this.transform;
         
     }
     /// <summary>
-    /// 用于控制黑色方块的生成以及消除后随机变换位置
+    /// 用于控制黑色方块的生成
     /// </summary>
-    public void BlackBlockController()
-    {
+    public void BlackBlockSpawn()
+    {   
         blockType = 2;
         blocks = Instantiate(blockArray[2]) as GameObject;
+        blocks.gameObject.SetActive(false);
         blocks.transform.parent = this.transform;
     }
 
-    //设想：利用黑色方块的setActive来控制生成，初始生成棋盘是的每一个blocks下会有一个棋盘底色块和一个设置为false的黑色方块
+    public void BlackBlockShow()
+    {
+        Transform black = transform.Find("BlackBlocks(Clone)");
+        black.gameObject.SetActive(true);
+    }
 
-    public void OnMouseDown()                   //按下键盘时将是黑色方块的进行Destory
+
+    public void OnMouseDown()                                           //按下键盘时将是黑色方块的进行SetActive为false
     {
         
-        Debug.Log("block： " + this.GetComponent<Blocks>().blockType);
+        //Debug.Log("block： " + this.GetComponent<Blocks>().blockType);
         
-        Debug.Log("原先棋盘格子类型：" + this.formerType);
+        //Debug.Log("原先棋盘格子类型：" + this.formerType);
         Transform black = transform.Find("BlackBlocks(Clone)");
-        if(black != null)
+        if(black != null && black.gameObject.activeSelf)                //如果黑色方块没有被显示则按下会显示找不到对象
         {
             black.gameObject.SetActive(false);
-            controller.ClickBlockNum++;         //点击方块++
+            controller.ClickBlockNum++;                                 //点击方块++
+            if(controller.curePercent < 100)
+            {
+                controller.curePercent += 5;
+            }
+            
         }
         else
         {
