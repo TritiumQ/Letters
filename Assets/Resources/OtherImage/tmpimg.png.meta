@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/BackgroundImage/BG2.jpg.meta
-guid: be1c050d696540c45b1fc5c2c1119486
-========
-guid: 13e7113c3eea52b4d88f35ef4b82cc2e
->>>>>>>> a5ec2cfe0893172c4ec53bd460797be4c95386db:Assets/Art/Player.png.meta
+guid: 572faaf6a4dd55c47b6b064b3c0690af
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
