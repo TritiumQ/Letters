@@ -14,9 +14,11 @@ public class SingletonGameSystem : MonoBehaviour
                 instance = FindObjectOfType<SingletonGameSystem>();
                 if(instance == null)
                 {
-                    GameObject go = new GameObject("GameSystem");
-                    instance = go.AddComponent<SingletonGameSystem>();
-                    DontDestroyOnLoad(go);
+                    //GameObject go = new GameObject("GameSystem");
+                    GameObject go = Resources.Load<GameObject>("Prefabs/GameSystem");
+                    GameObject newOB = Instantiate(go);
+					instance = newOB.GetComponent<SingletonGameSystem>();
+                    DontDestroyOnLoad(newOB);
                 }
             }
             return instance;
@@ -25,17 +27,19 @@ public class SingletonGameSystem : MonoBehaviour
 
 	#region 各种管理器
 
-    OptionSystem optionSystem;
-
-    AudioController audioController;
+    public OptionController optionSystem { get; private set; }
+    public AudioController audioController { get; private set; }
+    public ProcessController processController { get; private set; }
 
 	#endregion
 
 	private void Awake()
     {
         instance = this;
-        optionSystem = gameObject.AddComponent<OptionSystem>();
-        audioController = gameObject.AddComponent<AudioController>();
+        optionSystem = GetComponent<OptionController>();
+        audioController = GetComponent<AudioController>();
+        processController = GetComponent<ProcessController>();
 		DontDestroyOnLoad(instance);
+
 	}
 }

@@ -4,7 +4,6 @@
 public class OptionData
 {
 	public bool EnableAudio;
-	public float GlobalVolume;
 	public float MusicVolume;
 	public float EffectVolume;
 
@@ -14,7 +13,6 @@ public class OptionData
 	public OptionData()
 	{
 		EnableAudio = OptionUtility.DefaultEnableAudio;
-		GlobalVolume = OptionUtility.DefaultGlobalVolume;
 		MusicVolume = OptionUtility.DefaultMusicVolume;
 		EffectVolume = OptionUtility.DefaultEffectVolume;
 		Resolution = OptionUtility.DefaultResolution;
@@ -25,7 +23,6 @@ public class OptionData
 	public OptionData
 		(
 			bool enableAudio, 
-			float globalVolume, 
 			float musicVolume, 
 			float effectVolume, 
 			ResolutionOption resolutionOption,
@@ -33,7 +30,6 @@ public class OptionData
 		)
 	{
 		EnableAudio = enableAudio;
-		GlobalVolume = globalVolume;
 		MusicVolume = musicVolume;
 		EffectVolume = effectVolume;
 		Resolution = resolutionOption;
@@ -49,7 +45,6 @@ public class OptionData
 	public void SetVolumeDefault()
 	{
 		EnableAudio = OptionUtility.DefaultEnableAudio;
-		GlobalVolume = OptionUtility.DefaultGlobalVolume;
 		MusicVolume = OptionUtility.DefaultMusicVolume;
 		EffectVolume = OptionUtility.DefaultEffectVolume;
 	}
@@ -57,7 +52,6 @@ public class OptionData
 	public void SetDefault()
 	{
 		EnableAudio = OptionUtility.DefaultEnableAudio;
-		GlobalVolume = OptionUtility.DefaultGlobalVolume;
 		MusicVolume = OptionUtility.DefaultMusicVolume;
 		EffectVolume = OptionUtility.DefaultEffectVolume;
 		Resolution = OptionUtility.DefaultResolution;

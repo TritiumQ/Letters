@@ -12,7 +12,7 @@ public class HEAD : MonoBehaviour
         Start.onClick.AddListener(StartNewGame);
         Continue.onClick.AddListener(ContinueGame);
         Options.onClick.AddListener(OpenOption);
-        Exit.onClick.AddListener(ExitGame);
+        //Exit.onClick.AddListener(ExitGame);
         AboutUs.onClick.AddListener(OpenAbout);
 
 

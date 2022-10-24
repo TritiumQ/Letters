@@ -8,47 +8,65 @@ public class AudioController : MonoBehaviour
     private AudioSource audioSource;
 
 	public bool EnableAudio;
-	public float GlobalVolume;
 	public float MusicVolume;
+    private float TrueMusicVolume;
 	public float EffectVolume;
+    private float TrueEffectVolume;
+
 
 	private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        if(audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-        //TODO 加载失败
-        AudioMixerGroup group = Resources.Load<AudioMixer>("/Audio/Mixers/MainMixer.mixer").FindMatchingGroups("Master")[0];
-        audioSource.outputAudioMixerGroup = group;
+        audioSource.volume = 0.5f;
     }
 
-    //播放
+    private void UpdateVolume()
+    {
+        EnableAudio = SingletonGameSystem.Instance.optionSystem.data.EnableAudio;
+        MusicVolume = SingletonGameSystem.Instance.optionSystem.data.MusicVolume;
+        EffectVolume = SingletonGameSystem.Instance.optionSystem.data.EffectVolume;
 
+        TrueMusicVolume = (MusicVolume / 100f);
+        TrueEffectVolume = (EffectVolume / 100f);
+
+        audioSource.volume = (TrueMusicVolume >= 0f && TrueMusicVolume <= 1f) ? TrueMusicVolume : 0.5f;
+    }
+
+    /// <summary>
+    /// 播放背景音乐
+    /// </summary>
+    /// <param name="name">背景音乐文件名</param>
+    /// <param name="isLoop">是否开启循环</param>
     public void PlayMusic(string name, bool isLoop = false)
     {
         if(EnableAudio)
         {
+            UpdateVolume();
 			audioSource.clip = GetAudioClip(name);
 			audioSource.loop = isLoop;
 			audioSource.Play();
 		}
 	}
 
-    public void PlayeEffectSound(string name, bool isLoop = false)
+    /// <summary>
+    /// 播放音效
+    /// </summary>
+    /// <param name="name">音效名</param>
+    public void PlayeEffectSound(string name)
     {
         if(EnableAudio)
         {
-
-        }
+			UpdateVolume();
+            var volume = (TrueEffectVolume >= 0f && TrueEffectVolume <= 1f) ? TrueEffectVolume : 0.5f;
+            audioSource.PlayOneShot(GetAudioClip(name), volume);
+		}
     }
 
 
     //暂停播放
     public void AudioPause()
     {
-        audioSource.Pause();
+		audioSource.Pause();
     }
 
     //暂停后继续
@@ -66,14 +84,17 @@ public class AudioController : MonoBehaviour
     //切换音频
     public void AudioSwitch(string name, bool isLoop = false)
     {
-        AudioClip clip = GetAudioClip(name);
-        if (audioSource.isPlaying)
+        if(EnableAudio)
         {
-            audioSource.Stop();
-        }
-        audioSource.clip = clip;
-        audioSource.loop = isLoop;
-        audioSource.Play();
+			AudioClip clip = GetAudioClip(name);
+			if (audioSource.isPlaying)
+			{
+				audioSource.Stop();
+			}
+			audioSource.clip = clip;
+			audioSource.loop = isLoop;
+			audioSource.Play();
+		}
     }
 	#region Utility
 	public static AudioClip GetAudioClip(string name)
