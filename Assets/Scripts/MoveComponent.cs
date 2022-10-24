@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveComponent : MonoBehaviour
 {
 	public bool EnableMove = true;
+	public bool IsNPC;
+
 	[Range(1f, 100f)]
 	public float MoveSpeed = 20f;
 	public bool EnableRun = true;
@@ -16,14 +18,45 @@ public class MoveComponent : MonoBehaviour
 	public float currentX;
 	public string HorizontalAxis = "Horizontal";
 
-	private void Update()
+    private void Awake()
+    {
+		if (IsNPC)
+		{
+			MoveSpeed = -MoveSpeed;
+		}
+	}
+
+    private void Update()
 	{
 		currentX = transform.position.x;
 		//Debug.Log(currentX);
+		
+
 		Move();
+		
 	}
 
-	private void Move()
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+		Debug.Log("½Ó´¥µ½ÁË" + other.name);
+		
+        if(other.CompareTag("Player"))
+        {
+
+			MoveSpeed = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+		{
+			MoveSpeed = -60f;
+        }
+    }
+
+
+    private void Move()
 	{
 		if (EnableMove)
 		{
@@ -43,7 +76,7 @@ public class MoveComponent : MonoBehaviour
 					}
 					
 				}
-				if (input > 0f)
+				if (input > 0f && !IsNPC)
 				{
 					if(currentX < MoveEdge)
                     {
