@@ -517,6 +517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 33643792}
     m_Modifications:
+    - target: {fileID: 1062077868806657584, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
+      propertyPath: EnableMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1288742724720349016, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.39469075
@@ -604,6 +608,10 @@ PrefabInstance:
     - target: {fileID: 1288742724720349017, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: m_Name
       value: "\u5988\u5988"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288742724720349030, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
+      propertyPath: EnableAnim
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6667899673586766061, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: m_GravityScale

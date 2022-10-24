@@ -10,6 +10,8 @@ public class AnimationControler : MonoBehaviour
 	AnimState CurrentState, PreviousState;
 	bool facingLeft;
 
+	public bool EnableAnim = true;
+
 	[SerializeField,Range(-1f, 1f)]
 	float currentSpeed;
 
@@ -23,8 +25,11 @@ public class AnimationControler : MonoBehaviour
 	{
 		if (skeleton == null) return;
 
-		float currentHorizontal = Input.GetAxisRaw(horizontalAxis);
-		TryMove(currentHorizontal);
+		if(EnableAnim)
+		{
+			float currentHorizontal = Input.GetAxisRaw(horizontalAxis);
+			TryMove(currentHorizontal);
+		}
 
 		if ((skeleton.Skeleton.ScaleX < 0) != facingLeft)
 		{
