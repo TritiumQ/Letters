@@ -15,6 +15,7 @@ public class FadeIn : MonoBehaviour
 	private void Start()
 	{
 		StartCoroutine(EnterScene());
+		
 	}
 
 	public IEnumerator EnterScene()
@@ -27,6 +28,7 @@ public class FadeIn : MonoBehaviour
 			Mask.color = new Color(0, 0, 0, alpha_tmp);
 			yield return null;
 		}
+		gameObject.SetActive(false);
 	}
 
 	[Obsolete("该方法有缺陷，已弃用",true)]
