@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class ProcessData : ScriptableObject
 {
 	public List<SceneData> sceneDatas = new List<SceneData>();
-	public Dictionary<string, SceneData> sceneDataDic = new Dictionary<string, SceneData>();
 }
 [System.Serializable]
 public class SceneData

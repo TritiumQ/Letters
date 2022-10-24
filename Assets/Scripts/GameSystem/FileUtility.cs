@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-internal static class OptionUtility
+internal static class FileUtility
 {
     /// <summary>
     /// 默认配置文件储存路径

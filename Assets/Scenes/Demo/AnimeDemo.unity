@@ -519,7 +519,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1062077868806657584, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: EnableMove
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1288742724720349016, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: m_Pivot.x
@@ -611,6 +611,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288742724720349030, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: EnableAnim
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288742724720349030, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
+      propertyPath: currentSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6667899673586766061, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
