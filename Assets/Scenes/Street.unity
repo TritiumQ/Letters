@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
       propertyPath: MoveSpeed
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3354910945850298066, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
       propertyPath: m_Pivot.x
