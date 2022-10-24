@@ -692,11 +692,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7266190422800176686, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7266190422800176686, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7266190424068106592, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: m_Pivot.x
@@ -786,6 +786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7266190424068106593, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7266190424068106605, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: musicVolume
       value: 
@@ -796,11 +800,11 @@ PrefabInstance:
       objectReference: {fileID: 1685331659}
     - target: {fileID: 7266190424180259054, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7266190424180259054, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0362db65958bd44b3566419cce316d, type: 3}
