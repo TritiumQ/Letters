@@ -5,7 +5,7 @@ using UnityEngine;
 public class OptionController : MonoBehaviour
 {
     public OptionData data { get; private set; }
-
+    public GameObject OptionMenu;
     private void Awake()
     {
 		data = OptionUtility.LoadOptionDataFromJson();

@@ -34,7 +34,7 @@ public class MoveComponent : MonoBehaviour
 				{
 					if(currentX > -MoveEdge)
                     {
-						float left = -MoveSpeed * Time.deltaTime * 3;
+						float left = -MoveSpeed * Time.deltaTime * 5;
 						if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
 						{
 							left *= RunRate;
@@ -47,7 +47,7 @@ public class MoveComponent : MonoBehaviour
 				{
 					if(currentX < MoveEdge)
                     {
-						float right = MoveSpeed * Time.deltaTime * 3;
+						float right = MoveSpeed * Time.deltaTime * 5;
 						if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
 						{
 							right *= RunRate;
