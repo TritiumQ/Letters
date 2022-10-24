@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class OptionController : MonoBehaviour
 {
+    public static OptionController Instance { get; private set; } 
     public OptionData data { get; private set; }
     public GameObject OptionMenu;
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 		data = FileUtility.LoadOptionDataFromJson();
     }
 

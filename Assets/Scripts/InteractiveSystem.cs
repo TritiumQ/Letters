@@ -26,6 +26,9 @@ public class InteractiveSystem : MonoBehaviour
             {
                 //TODO 调查接口
                 Debug.Log("调查" + InteractiveObject.name);
+                DialogueUI.Instance.UpdateDialogue(InteractiveObject.GetComponent<InteractiveTrigger>().asset);
+                DialogueUI.Instance.UpdateMainDialogue(InteractiveObject.GetComponent<InteractiveTrigger>().asset.dialoguePieces[0]);
+
             }
         }
     }

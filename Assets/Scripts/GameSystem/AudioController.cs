@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
+    public static AudioController Instance { get; private set; }
+
     private AudioSource audioSource;
 
 	public bool EnableAudio;
@@ -16,6 +18,15 @@ public class AudioController : MonoBehaviour
 
 	private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0.5f;
     }

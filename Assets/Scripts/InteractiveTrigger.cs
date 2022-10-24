@@ -9,10 +9,7 @@ public class InteractiveTrigger : MonoBehaviour
 {
 	InteractiveSystem system;
 
-	public bool EnableGlow;
-
-	[SerializeField]
-	Image thisImage;
+	public DialogueData_SO asset;
 
 	private void Awake()
 	{

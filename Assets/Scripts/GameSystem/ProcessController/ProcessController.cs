@@ -5,14 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class ProcessController : MonoBehaviour
 {
+    public static ProcessController Instance { get; private set; }
+
     public ProcessData data;
     public string CurrentSceneName;
+    public string NextSceneName;
     public Scene scene;
 
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         scene = SceneManager.GetActiveScene();
         CurrentSceneName = scene.name;
+        //NextSceneName = data.sceneDatas.Find((SceneData sd) => { return sd.SceneName == CurrentSceneName; }).nextScene;
+
     }
 
     #region APIs
@@ -27,7 +41,7 @@ public class ProcessController : MonoBehaviour
         return null;
     }
 
-
+     
 
 	#endregion
 

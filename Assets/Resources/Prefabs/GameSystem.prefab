@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3656078416322914430}
   - component: {fileID: 7361013299233412698}
   - component: {fileID: 8685605216052726706}
+  - component: {fileID: 666708927131570995}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74d1b2033371c54d8d9cca7e9b35c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionMenu: {fileID: 0}
 --- !u!114 &3656078416322914430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +185,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b571ff11ed336046915dc77c9251111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  CurrentSceneName: 
+  NextSceneName: 
+  scene:
+    m_Handle: 0
+--- !u!114 &666708927131570995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257224390144654191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d0dae750c635144828292696bd293c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs: {fileID: 1510904274834737290, guid: 372a9524254618e4ea4217751527390e, type: 3}
+  standA: {fileID: 0}
+  standB: {fileID: 0}
+  speakerName: {fileID: 0}
+  mainText: {fileID: 0}

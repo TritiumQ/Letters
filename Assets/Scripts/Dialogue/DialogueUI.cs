@@ -16,10 +16,12 @@ public class DialogueUI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     private DialogueData_SO currentData;//当前对话数据
     private int currentIndex;//对话序号
+
     [SerializeField]
     private Canvas dialogueCanvas;
     private bool canContinue;
