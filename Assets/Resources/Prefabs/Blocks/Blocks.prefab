@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ee8588580ccaf41a421f0ef25fa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Xoffset: -12
-  Yoffset: -7.6
+  Xoffset: -12.6
+  Yoffset: -6.3
   rowIndex: 0
   colIndex: 0
   blockArray:
