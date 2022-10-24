@@ -12,11 +12,11 @@ public class OptionData
 	
 	public OptionData()
 	{
-		EnableAudio = OptionUtility.DefaultEnableAudio;
-		MusicVolume = OptionUtility.DefaultMusicVolume;
-		EffectVolume = OptionUtility.DefaultEffectVolume;
-		Resolution = OptionUtility.DefaultResolution;
-		FullScreen = OptionUtility.DefaultFullScreen;
+		EnableAudio = FileUtility.DefaultEnableAudio;
+		MusicVolume = FileUtility.DefaultMusicVolume;
+		EffectVolume = FileUtility.DefaultEffectVolume;
+		Resolution = FileUtility.DefaultResolution;
+		FullScreen = FileUtility.DefaultFullScreen;
 
 	}
 
@@ -38,24 +38,24 @@ public class OptionData
 
 	public void SetResolutionDefault()
 	{
-		Resolution = OptionUtility.DefaultResolution;
-		FullScreen = OptionUtility.DefaultFullScreen;
+		Resolution = FileUtility.DefaultResolution;
+		FullScreen = FileUtility.DefaultFullScreen;
 	}
 
 	public void SetVolumeDefault()
 	{
-		EnableAudio = OptionUtility.DefaultEnableAudio;
-		MusicVolume = OptionUtility.DefaultMusicVolume;
-		EffectVolume = OptionUtility.DefaultEffectVolume;
+		EnableAudio = FileUtility.DefaultEnableAudio;
+		MusicVolume = FileUtility.DefaultMusicVolume;
+		EffectVolume = FileUtility.DefaultEffectVolume;
 	}
 
 	public void SetDefault()
 	{
-		EnableAudio = OptionUtility.DefaultEnableAudio;
-		MusicVolume = OptionUtility.DefaultMusicVolume;
-		EffectVolume = OptionUtility.DefaultEffectVolume;
-		Resolution = OptionUtility.DefaultResolution;
-		FullScreen = OptionUtility.DefaultFullScreen;
+		EnableAudio = FileUtility.DefaultEnableAudio;
+		MusicVolume = FileUtility.DefaultMusicVolume;
+		EffectVolume = FileUtility.DefaultEffectVolume;
+		Resolution = FileUtility.DefaultResolution;
+		FullScreen = FileUtility.DefaultFullScreen;
 	}
 }
 

@@ -8,7 +8,7 @@ public class OptionController : MonoBehaviour
     public GameObject OptionMenu;
     private void Awake()
     {
-		data = OptionUtility.LoadOptionDataFromJson();
+		data = FileUtility.LoadOptionDataFromJson();
     }
 
     public void SetResolution(ResolutionOption option)
@@ -37,14 +37,14 @@ public class OptionController : MonoBehaviour
             default:
                 break;
         }
-        OptionUtility.SaveOptionDataToJson(data);
+        FileUtility.SaveOptionDataToJson(data);
     }
 
     public void SetFullScreen(bool enableFullScreen)
     {
         data.FullScreen = enableFullScreen;
         Screen.fullScreen = enableFullScreen;
-		OptionUtility.SaveOptionDataToJson(data);
+		FileUtility.SaveOptionDataToJson(data);
 	}
 
     /// <summary>
@@ -54,7 +54,7 @@ public class OptionController : MonoBehaviour
     public void SetMusicVolume(float musicVolume)
     {
         data.MusicVolume = musicVolume;
-		OptionUtility.SaveOptionDataToJson(data);
+		FileUtility.SaveOptionDataToJson(data);
 	}
 
 	/// <summary>
@@ -64,7 +64,7 @@ public class OptionController : MonoBehaviour
 	public void SetEffectVolume(float effectVolume)
     {
         data.EffectVolume = effectVolume;
-		OptionUtility.SaveOptionDataToJson(data);
+		FileUtility.SaveOptionDataToJson(data);
 	}
 
 	/// <summary>
@@ -74,6 +74,6 @@ public class OptionController : MonoBehaviour
 	public void SetAudioEnabled(bool enableAudio)
     {
         data.EnableAudio = enableAudio;
-		OptionUtility.SaveOptionDataToJson(data);
+		FileUtility.SaveOptionDataToJson(data);
 	}
 }
