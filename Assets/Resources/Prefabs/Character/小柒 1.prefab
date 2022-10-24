@@ -136,6 +136,8 @@ MonoBehaviour:
   EnableMove: 1
   MoveSpeed: 50
   EnableRun: 1
+  MoveEdge: 888
+  currentX: 0
   HorizontalAxis: Horizontal
 --- !u!50 &1358744991780873099
 Rigidbody2D:
