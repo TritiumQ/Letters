@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5897441306095435797}
   - component: {fileID: 7624900453547319149}
   m_Layer: 0
-  m_Name: Obj1
+  m_Name: InteractiveObject
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f93adc95e16e649b5347550cb59a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnableGlow: 0
-  thisImage: {fileID: 0}
+  currentData: {fileID: 0}
+  EnableInteraction: 1
+  isInteract: 1
 --- !u!61 &9057545690169648247
 BoxCollider2D:
   m_ObjectHideFlags: 0
