@@ -731,6 +731,10 @@ PrefabInstance:
       propertyPath: Tips
       value: 
       objectReference: {fileID: 1549855540}
+    - target: {fileID: 8674134617680501809, guid: f460cdf8af27d4a419da481b83533687, type: 3}
+      propertyPath: EnableIteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8674134617680501814, guid: f460cdf8af27d4a419da481b83533687, type: 3}
       propertyPath: m_RootOrder
       value: 2

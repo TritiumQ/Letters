@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePieces:
   - ID: 0
-    image: {fileID: -459565839, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
+    image: {fileID: 21300000, guid: dc6257ab38e6b914789ea3d3c9aa1082, type: 3}
     speakerName: "\u5C0F\u67D2  "
     text: "PS\u548Cswitch\u7684\u5B9E\u4F53\u5149\u76D8\u548C\u5361\u5E26\u592A\u8D35\u4E86......\u4E0B\u6B21\u8FD8\u662F\u4E70\u6570\u5B57\u7248\u7684\u6E38\u620F\u5427"
     isNpc: 0

@@ -38,7 +38,7 @@ public class Blocks : MonoBehaviour
     {
         rowIndex = _rowIndex;
         colIndex = _colIndex;
-        this.transform.position = new Vector3(colIndex + Xoffset , rowIndex + Yoffset , 0);
+        this.transform.position = new Vector3(colIndex * 0.84f + Xoffset , rowIndex * 0.84f  + Yoffset , 0);
     }
 
     /// <summary>
