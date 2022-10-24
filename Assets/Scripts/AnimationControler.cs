@@ -12,6 +12,8 @@ public class AnimationControler : MonoBehaviour
 
 	public bool EnableAnim = true;
 
+	public bool IsNPC;
+
 	[SerializeField,Range(-1f, 1f)]
 	float currentSpeed;
 
@@ -21,13 +23,24 @@ public class AnimationControler : MonoBehaviour
 
 	public AnimationReferenceAsset run, idle, walk;
 
-	private void Update()
+	public float currentHorizontal;
+
+    private void Awake()
+    {
+        
+    }
+
+    private void Update()
 	{
 		if (skeleton == null) return;
 
 		if(EnableAnim)
 		{
-			float currentHorizontal = Input.GetAxisRaw(horizontalAxis);
+			currentHorizontal = Input.GetAxisRaw(horizontalAxis);
+			if (IsNPC)
+			{
+				currentHorizontal = -currentHorizontal;
+			}
 			TryMove(currentHorizontal);
 		}
 
@@ -69,7 +82,11 @@ public class AnimationControler : MonoBehaviour
 	/// </summary>
 	void Turn()
 	{
-		skeleton.Skeleton.ScaleX = facingLeft ? -1f : 1f;
+		if(!IsNPC)
+        {
+			skeleton.Skeleton.ScaleX = facingLeft ? -1f : 1f;
+		}
+		
 	}
 
 	void TryMove(float speed)
