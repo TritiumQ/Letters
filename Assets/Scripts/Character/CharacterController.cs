@@ -14,13 +14,20 @@ public class CharacterController : MonoBehaviour
 	public float RunRate = 1.5f;
 	public string horizontalAxis = "Horizontal";
 	public bool EnableAnimation = true;
+
+	public float currentX;							//获取玩家实时的X轴坐标
 	[SerializeField]
 	AnimationControler controler;
+
+	
 
 	private void Update()
     {
 		controler.enabled = EnableAnimation;
+		currentX = transform.position.x;            //实时获取玩家的X坐标
+		Debug.Log(currentX);
 		Move();
+
     }
 
     private void Move()

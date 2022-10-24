@@ -363,6 +363,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
+      propertyPath: MoveEdge
+      value: 1830
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
       propertyPath: MoveSpeed
       value: 40
       objectReference: {fileID: 0}
