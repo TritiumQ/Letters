@@ -219,13 +219,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1543395764}
     m_Modifications:
-    - target: {fileID: 599682495945148547, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
-      propertyPath: MoveSpeed
-      value: 100
+    - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
+      propertyPath: cm
+      value: 
+      objectReference: {fileID: 1555283714}
+    - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
+      propertyPath: RunFlag
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 599682495945148550, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
-      propertyPath: m_Name
-      value: "\u5C0F\u67D2 1"
+    - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
+      propertyPath: MoveEdge
+      value: 1830
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354910945850298065, guid: 073a8c2a901b278429aee9724a849d6f, type: 3}
+      propertyPath: MoveSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 599682495945148551, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: m_Pivot.x

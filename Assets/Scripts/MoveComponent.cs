@@ -11,10 +11,15 @@ public class MoveComponent : MonoBehaviour
 	[Range(1f, 5f)]
 	public const float RunRate = 1.5f;
 
+	public float MoveEdge = 888f;
+
+	public float currentX;
 	public string HorizontalAxis = "Horizontal";
 
 	private void Update()
 	{
+		currentX = transform.position.x;
+		//Debug.Log(currentX);
 		Move();
 	}
 
@@ -27,21 +32,29 @@ public class MoveComponent : MonoBehaviour
 			{
 				if (input < 0f)
 				{
-					float left = -MoveSpeed * Time.deltaTime * 3;
-					if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
-					{
-						left *= RunRate;
+					if(currentX > -MoveEdge)
+                    {
+						float left = -MoveSpeed * Time.deltaTime * 3;
+						if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
+						{
+							left *= RunRate;
+						}
+						gameObject.transform.Translate(left, 0, 0);
 					}
-					gameObject.transform.Translate(left, 0, 0);
+					
 				}
 				if (input > 0f)
 				{
-					float right = MoveSpeed * Time.deltaTime * 3;
-					if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
-					{
-						right *= RunRate;
+					if(currentX < MoveEdge)
+                    {
+						float right = MoveSpeed * Time.deltaTime * 3;
+						if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
+						{
+							right *= RunRate;
+						}
+						gameObject.transform.Translate(right, 0, 0);
 					}
-					gameObject.transform.Translate(right, 0, 0);
+					
 				}
 			}
 		}
