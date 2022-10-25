@@ -56,6 +56,7 @@ public class MoveAndAnimationController : MonoBehaviour
 
 		PreviousState = CurrentState;
 		currentX = transform.position.x;
+
 		if(EnableMove)
 		{
 			Move(currentHorizontal);

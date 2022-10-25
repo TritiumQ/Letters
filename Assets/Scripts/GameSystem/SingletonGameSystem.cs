@@ -41,9 +41,9 @@ public class SingletonGameSystem : MonoBehaviour
 	private void Awake()
     {
         instance = this;
-        optionSystem = GetComponent<OptionController>();
-        audioController = GetComponent<AudioController>();
-        processController = GetComponent<ProcessController>();
+        optionSystem = OptionController.Instance;
+        audioController = AudioController.Instance;
+        processController = ProcessController.Instance;
 		DontDestroyOnLoad(instance);
 
         audioController.UpdateVolume();
@@ -57,7 +57,6 @@ public class SingletonGameSystem : MonoBehaviour
 			{
 				Debug.Log("ÔÝÍ£²Ëµ¥");
                 StartPause();
-
 			}
 		}
 	}
@@ -65,11 +64,12 @@ public class SingletonGameSystem : MonoBehaviour
     private void StartPause()
     {
         Time.timeScale = 0;
-
-    }
+		optionSystem?.StartPause();
+	}
 
     private void StopPause()
     {
 		Time.timeScale = 0;
+        optionSystem?.StopPause();
 	}
 }
