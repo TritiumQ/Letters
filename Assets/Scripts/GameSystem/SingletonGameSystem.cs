@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SingletonGameSystem : MonoBehaviour
 {
@@ -25,9 +26,13 @@ public class SingletonGameSystem : MonoBehaviour
         }
     }
 
+    #region 相关属性
+
+	#endregion
+
 	#region 各种管理器
 
-    public OptionController optionSystem { get; private set; }
+	public OptionController optionSystem { get; private set; }
     public AudioController audioController { get; private set; }
     public ProcessController processController { get; private set; }
 
@@ -36,10 +41,35 @@ public class SingletonGameSystem : MonoBehaviour
 	private void Awake()
     {
         instance = this;
-        optionSystem = GetComponent<OptionController>();
-        audioController = GetComponent<AudioController>();
-        processController = GetComponent<ProcessController>();
+        optionSystem = OptionController.Instance;
+        audioController = AudioController.Instance;
+        processController = ProcessController.Instance;
 		DontDestroyOnLoad(instance);
 
+        audioController.UpdateVolume();
+	}
+
+    private void Update()
+    {
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (SceneManager.GetActiveScene().name != "MainMenu")
+			{
+				Debug.Log("暂停菜单");
+                StartPause();
+			}
+		}
+	}
+
+    private void StartPause()
+    {
+        Time.timeScale = 0;
+		optionSystem?.StartPause();
+	}
+
+    private void StopPause()
+    {
+		Time.timeScale = 0;
+        optionSystem?.StopPause();
 	}
 }

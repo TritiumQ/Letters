@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class MoveAndAnimationController : MonoBehaviour
 {
-
 	public bool EnableMove = true;
 	public bool EnableRun = true;
 	public bool EnableAnim = true;
@@ -35,11 +34,6 @@ public class MoveAndAnimationController : MonoBehaviour
 
 	public AnimationReferenceAsset run, idle, walk;
 
-    private void Awake()
-    {
-       
-    }
-
     private void Update()
 	{
 		if (skeleton == null) return;
@@ -62,6 +56,7 @@ public class MoveAndAnimationController : MonoBehaviour
 
 		PreviousState = CurrentState;
 		currentX = transform.position.x;
+
 		if(EnableMove)
 		{
 			Move(currentHorizontal);
