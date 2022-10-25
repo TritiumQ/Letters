@@ -1099,10 +1099,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 42.8
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1166,8 +1166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138, y: 293}
-  m_SizeDelta: {x: 285.8976, y: 50}
+  m_AnchoredPosition: {x: 156.22375, y: 296.18704}
+  m_SizeDelta: {x: 322.3452, y: 56.3743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1173127782
 GameObject:
@@ -1259,11 +1259,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 599682495945148546, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: MoveEdge
-      value: 1280
+      value: 1300
       objectReference: {fileID: 0}
     - target: {fileID: 599682495945148546, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: MoveSpeed
-      value: 53
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 599682495945148547, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: MoveEdge
