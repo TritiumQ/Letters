@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2297080545424899627}
   m_Layer: 0
   m_Name: "\u963F\u5065"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,18 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableMove: 1
-  MoveSpeed: 20
   EnableRun: 1
+  EnableAnim: 1
+  MoveSpeed: 20
   MoveEdge: 888
   currentX: 0
   HorizontalAxis: Horizontal
   CurrentState: 0
   PreviousState: 0
-  EnableAnim: 1
-  Reverse: 0
   currentSpeed: 0
   skeleton: {fileID: 7454709793325838813}
-  run: {fileID: 0}
+  run: {fileID: 11400000, guid: 116ab79a928f230459c61153a551260f, type: 2}
   idle: {fileID: 11400000, guid: fb4bc33acb01c764cbe85c55116a2870, type: 2}
   walk: {fileID: 11400000, guid: 7c9f0f46a5888024fa4c1b705a307d19, type: 2}
 --- !u!61 &3966416965182433322
