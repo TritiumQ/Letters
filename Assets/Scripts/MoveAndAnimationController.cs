@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MoveAndAnimationController : MonoBehaviour
 {
+
+	public bool AutoMode = false;
 	public bool EnableMove = true;
 	public bool EnableRun = true;
 	public bool EnableAnim = true;
@@ -36,7 +38,12 @@ public class MoveAndAnimationController : MonoBehaviour
 
     private void Awake()
     {
-        
+        if(AutoMode)
+		{
+			EnableAnim = false;
+			EnableMove = false;
+			EnableRun = false;
+		}
     }
 
     private void Update()
@@ -65,6 +72,8 @@ public class MoveAndAnimationController : MonoBehaviour
 		{
 			Move(currentHorizontal);
 		}
+
+		
 	}
 
 	void PlayNewStableAnimation()
@@ -149,18 +158,20 @@ public class MoveAndAnimationController : MonoBehaviour
 			}
 		}
 	}
-	public void Auto(float targetX)
+
+	public IEnumerator Auto(float targetX)
 	{
-		if (facingLeft)
+		if (currentX > targetX)
 		{
 			SetMove(-1f);
-			
+			Move(-1f);
 		}
 		else
 		{
 			SetMove(1f);
-			
+			Move(0f);
 		}
+		yield return null;
 	}
 }
 
