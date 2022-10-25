@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f5b917d6fa5404c846822b8c3da371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentData: {fileID: 11400000, guid: b11101b06375db444bea42d8bc66821d, type: 2}
+  currentData: {fileID: 11400000, guid: bafbbec2ad96f58469f31ef3e90c8602, type: 2}
   isInteract: 0
 --- !u!4 &486401310
 Transform:
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f5b917d6fa5404c846822b8c3da371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentData: {fileID: 11400000, guid: 59bb6c6fb0a09a34abfce10602d79d08, type: 2}
+  currentData: {fileID: 11400000, guid: d93bbea75a5b7134c9739520a69fb651, type: 2}
   isInteract: 0
 --- !u!1 &951889282
 GameObject:
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 951889285}
   - component: {fileID: 951889284}
   m_Layer: 5
-  m_Name: wawacai
+  m_Name: pingguo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5A03\u5A03\u83DC"
+  m_text: "\u82F9\u679C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
   m_sharedMaterial: {fileID: 4963435728891261242, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u767D\u83DC"
+  m_text: "\u6A58\u5B50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
   m_sharedMaterial: {fileID: 4963435728891261242, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f5b917d6fa5404c846822b8c3da371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentData: {fileID: 11400000, guid: adec91330ce6a304280373ef5984e7ad, type: 2}
+  currentData: {fileID: 11400000, guid: abde4eb7e101ba1489300a39e294259a, type: 2}
   isInteract: 0
 --- !u!1 &1173127782
 GameObject:
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2fbabca715142944d83d48524be8d9b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdc07bcfcf39eff4b9430f1949ee5f03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1280,7 +1280,7 @@ GameObject:
   - component: {fileID: 1316981767}
   - component: {fileID: 1316981766}
   m_Layer: 5
-  m_Name: yecai
+  m_Name: qingzao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u91CE\u83DC"
+  m_text: "\u9752\u67A3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
   m_sharedMaterial: {fileID: 4963435728891261242, guid: 79f8c1d8cdd900343a6040aac2a211b3, type: 2}
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f5b917d6fa5404c846822b8c3da371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentData: {fileID: 11400000, guid: cc5d78b5df781ea4f85ed0c04a3415b0, type: 2}
+  currentData: {fileID: 11400000, guid: 87c0d6a0d9d4c9e46aa42d0408c098cb, type: 2}
   isInteract: 0
 --- !u!4 &1495549090
 Transform:
@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 1919295948}
   - component: {fileID: 1919295947}
   m_Layer: 5
-  m_Name: baicai
+  m_Name: juzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

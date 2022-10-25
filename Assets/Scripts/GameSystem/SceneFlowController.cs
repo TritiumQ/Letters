@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SceneFlowController : MonoBehaviour
 {
-    [SerializeField] public List<Action> actionList = new List<Action>();
+    public List<Action> actionList = new List<Action>();
 
 
 
@@ -21,6 +21,7 @@ public class SceneFlowController : MonoBehaviour
         
     }
 }
+
 
 public class Action
 {

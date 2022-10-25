@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI Instance { get; private set; }
+
+    public bool endFlag = false;
     private void Awake()
     {
         if (Instance == null)
@@ -37,6 +39,7 @@ public class DialogueUI : MonoBehaviour
 
     private void Update()
     {
+        endFlag = false;
         if (canContinue && Input.GetKeyDown(KeyCode.Space))
         {
             if (currentIndex < currentData.dialoguePieces.Count)
@@ -47,6 +50,7 @@ public class DialogueUI : MonoBehaviour
             {
                 canContinue = false;
                 dialogueCanvas.enabled = false;
+                endFlag = true;
             }
         }
     }
