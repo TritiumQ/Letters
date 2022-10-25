@@ -113,18 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableMove: 1
-  MoveSpeed: 20
   EnableRun: 1
+  EnableAnim: 1
+  MoveSpeed: 20
   MoveEdge: 888
   currentX: 0
   HorizontalAxis: Horizontal
   CurrentState: 0
   PreviousState: 0
-  EnableAnim: 1
-  Reverse: 0
   currentSpeed: 0
   skeleton: {fileID: 599682495945148544}
-  run: {fileID: 0}
+  run: {fileID: 11400000, guid: 116ab79a928f230459c61153a551260f, type: 2}
   idle: {fileID: 11400000, guid: d6b22dc75523c2344ad665c19db175b2, type: 2}
   walk: {fileID: 11400000, guid: 336858cfbdbbbdc4e917be27a3dd1e2a, type: 2}
 --- !u!50 &1358744991780873099
