@@ -50,6 +50,7 @@ public class InteractiveTrigger : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		Debug.Log(gameObject.name + "Ω”¥•µΩ¡À" + other.name);
 		if (other.CompareTag("Player") && currentData != null)
 		{
 			canTalk = true;
@@ -62,12 +63,12 @@ public class InteractiveTrigger : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
+		Debug.Log("Exit");
 		if (other.CompareTag("Player"))
 		{
 			canTalk = false;
 			if (system != null)
 			{
-				Debug.Log("Exit");
 				system.StopInteracting();
 			}
 		}

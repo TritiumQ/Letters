@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Obsolete]
 public class MoveComponent : MonoBehaviour
 {
 	public bool EnableMove = true;
@@ -55,7 +56,6 @@ public class MoveComponent : MonoBehaviour
         }
     }
 
-
     private void Move()
 	{
 		if (EnableMove)
@@ -90,6 +90,27 @@ public class MoveComponent : MonoBehaviour
 					
 				}
 			}
+		}
+	}
+	public void AutoMove(bool facingLeft)
+	{
+		if(facingLeft)
+		{
+			float left = -MoveSpeed * Time.deltaTime * 5;
+			if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
+			{
+				left *= RunRate;
+			}
+			gameObject.transform.Translate(left, 0, 0);
+		}
+		else
+		{
+			float right = MoveSpeed * Time.deltaTime * 5;
+			if (Input.GetKey(KeyCode.LeftShift) && EnableRun)
+			{
+				right *= RunRate;
+			}
+			gameObject.transform.Translate(right, 0, 0);
 		}
 	}
 }

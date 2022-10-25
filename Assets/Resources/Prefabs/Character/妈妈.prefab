@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1288742724720349030}
   - component: {fileID: 6667899673586766061}
   - component: {fileID: 8634961366958503708}
-  - component: {fileID: 1062077868806657584}
   m_Layer: 0
   m_Name: "\u5988\u5988"
   m_TagString: Untagged
@@ -113,11 +112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc79e2e600c89a245a60bf63342be2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableMove: 1
+  MoveSpeed: 20
+  EnableRun: 1
+  MoveEdge: 888
+  currentX: 0
+  HorizontalAxis: Horizontal
   CurrentState: 0
   PreviousState: 0
+  EnableAnim: 1
+  Reverse: 0
   currentSpeed: 0
   skeleton: {fileID: 1288742724720349029}
-  horizontalAxis: Horizontal
   run: {fileID: 11400000, guid: 116ab79a928f230459c61153a551260f, type: 2}
   idle: {fileID: 11400000, guid: d6b22dc75523c2344ad665c19db175b2, type: 2}
   walk: {fileID: 11400000, guid: 76f8f46d1b88c0e45b21ae4aada718e4, type: 2}
@@ -168,19 +174,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 219.07431, y: 527.6559}
   m_EdgeRadius: 0
---- !u!114 &1062077868806657584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288742724720349017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa40044e9aff6c45a472dc088328372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnableMove: 1
-  MoveSpeed: 20
-  EnableRun: 1
-  HorizontalAxis: Horizontal

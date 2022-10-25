@@ -774,6 +774,10 @@ PrefabInstance:
       value: "\u5988\u5988"
       objectReference: {fileID: 0}
     - target: {fileID: 1288742724720349030, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
+      propertyPath: MoveSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288742724720349030, guid: 5a24bfb370452e74280f6bc7964ff2b7, type: 3}
       propertyPath: EnableAnim
       value: 1
       objectReference: {fileID: 0}

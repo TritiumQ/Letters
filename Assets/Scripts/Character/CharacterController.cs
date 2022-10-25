@@ -17,7 +17,7 @@ public class CharacterController : MonoBehaviour
 
 	public float currentX;							//获取玩家实时的X轴坐标
 	[SerializeField]
-	AnimationControler controler;
+	MoveAndAnimationController controler;
 
 	
 
