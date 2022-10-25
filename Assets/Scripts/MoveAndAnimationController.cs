@@ -37,12 +37,7 @@ public class MoveAndAnimationController : MonoBehaviour
 
     private void Awake()
     {
-        if(AutoMode)
-		{
-			EnableAnim = false;
-			EnableMove = false;
-			EnableRun = false;
-		}
+       
     }
 
     private void Update()
