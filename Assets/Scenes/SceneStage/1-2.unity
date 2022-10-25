@@ -764,7 +764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7759472620378404920, guid: dbf2588dafcf9444eb23d2c27cd44371, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7759472620378404920, guid: dbf2588dafcf9444eb23d2c27cd44371, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0a194b31fdcc9d4299aa01a8e88d409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e629d354295e2f1459058f932f94c914, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1233,7 +1233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549855538
 GameObject:
