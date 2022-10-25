@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class ProcessController : MonoBehaviour
@@ -33,23 +34,48 @@ public class ProcessController : MonoBehaviour
 
     public void GoNextScene()
     {
-
+        if(NextSceneName != CurrentSceneName && NextSceneName != null && NextSceneName != string.Empty)
+        {
+            StartCoroutine(LoadScene(NextSceneName));
+        }
     }
 
-    public string GetNextScene()
-    {
-        return null;
-    }
-
-     
+	public void GoNextScene(string nextScene)
+	{
+		if (nextScene != CurrentSceneName && nextScene != null && nextScene != string.Empty)
+		{
+			StartCoroutine(LoadScene(nextScene));
+		}
+	}
 
 	#endregion
 
 	#region Utility
-    public static ProcessData LoadProcessData()
+	private static ProcessData LoadProcessData()
     {
         ProcessData data = Resources.Load<ProcessData>("/ProcessData/MainPocess");
         return data;
+    }
+
+    private IEnumerator LoadScene(string sceneName, UnityAction doBeforeLoad = null, UnityAction doWhenLoad = null, UnityAction doAfterLoad = null)
+    {
+        if(doBeforeLoad != null)
+        {
+            doBeforeLoad.Invoke();
+        }
+        yield return null;
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        async.allowSceneActivation = false;
+        while(async.progress < 0.9f)
+        {
+            yield return null;
+        }
+        if(doAfterLoad != null)
+        {
+            doAfterLoad.Invoke();
+        }
+		async.allowSceneActivation = true;
+		yield break;
     }
 	#endregion
 
