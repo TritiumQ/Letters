@@ -7,6 +7,5 @@ using UnityEngine.UIElements;
 
 public class OptionMenuManager : MonoBehaviour
 {
-	public Scrollbar musicVolume, effectVolume;
-	public DropdownMenu resolution, window;
+
 }

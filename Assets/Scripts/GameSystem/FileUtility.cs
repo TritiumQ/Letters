@@ -59,7 +59,6 @@ internal static class FileUtility
 
 	#region Ä¬ÈÏÅäÖÃ
 	public static readonly bool DefaultEnableAudio = true;
-	public static readonly float DefaultGlobalVolume = 50f;
 	public static readonly float DefaultMusicVolume = 50f;
 	public static readonly float DefaultEffectVolume = 50f;
 

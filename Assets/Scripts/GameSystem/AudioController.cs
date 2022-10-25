@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -10,9 +11,13 @@ public class AudioController : MonoBehaviour
     private AudioSource audioSource;
 
 	public bool EnableAudio;
+    [Range(0f, 100f)]
 	public float MusicVolume;
+    [SerializeField,Range(0f,1f)]
     private float TrueMusicVolume;
+    [Range(0f,100f)]
 	public float EffectVolume;
+    [SerializeField,Range(0f,1f)]
     private float TrueEffectVolume;
 
 
@@ -31,7 +36,7 @@ public class AudioController : MonoBehaviour
         audioSource.volume = 0.5f;
     }
 
-    private void UpdateVolume()
+    public void UpdateVolume()
     {
         EnableAudio = SingletonGameSystem.Instance.optionSystem.data.EnableAudio;
         MusicVolume = SingletonGameSystem.Instance.optionSystem.data.MusicVolume;

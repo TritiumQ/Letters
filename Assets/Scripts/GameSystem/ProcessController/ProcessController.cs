@@ -8,6 +8,7 @@ public class ProcessController : MonoBehaviour
 {
     public static ProcessController Instance { get; private set; }
 
+    public string processName = "MainProcess";
     public ProcessData data;
     public string CurrentSceneName;
     public string NextSceneName;
@@ -23,7 +24,7 @@ public class ProcessController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        LoadProcessData();
         scene = SceneManager.GetActiveScene();
         CurrentSceneName = scene.name;
         //NextSceneName = data.sceneDatas.Find((SceneData sd) => { return sd.SceneName == CurrentSceneName; }).nextScene;
@@ -51,9 +52,9 @@ public class ProcessController : MonoBehaviour
 	#endregion
 
 	#region Utility
-	private static ProcessData LoadProcessData()
+	private ProcessData LoadProcessData()
     {
-        ProcessData data = Resources.Load<ProcessData>("/ProcessData/MainPocess");
+        ProcessData data = Resources.Load<ProcessData>("/ProcessData/" + processName);
         return data;
     }
 

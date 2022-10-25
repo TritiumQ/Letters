@@ -11,20 +11,15 @@ public class OptionData
 	public bool FullScreen;
 	
 	public OptionData()
-	{
-		EnableAudio = FileUtility.DefaultEnableAudio;
-		MusicVolume = FileUtility.DefaultMusicVolume;
-		EffectVolume = FileUtility.DefaultEffectVolume;
-		Resolution = FileUtility.DefaultResolution;
-		FullScreen = FileUtility.DefaultFullScreen;
+	{ 
 
 	}
 
 	public OptionData
 		(
-			bool enableAudio, 
-			float musicVolume, 
-			float effectVolume, 
+			bool enableAudio,
+			float musicVolume,
+			float effectVolume,
 			ResolutionOption resolutionOption,
 			bool fullScreen
 		)

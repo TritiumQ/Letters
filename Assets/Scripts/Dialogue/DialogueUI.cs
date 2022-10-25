@@ -16,7 +16,6 @@ public class DialogueUI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     private DialogueData_SO currentData;//当前对话数据

@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class OptionController : MonoBehaviour
 {
     public static OptionController Instance { get; private set; } 
     public OptionData data { get; private set; }
-    public GameObject OptionMenu;
-    private void Awake()
+    public Canvas OptionMenu;
+
+	public Scrollbar musicVolume, effectVolume;
+	public TMP_Dropdown resolution, window;
+
+	private void Awake()
     {
         if(Instance == null)
         {
@@ -18,8 +25,22 @@ public class OptionController : MonoBehaviour
             Destroy(gameObject);
         }
 		data = FileUtility.LoadOptionDataFromJson();
+        OptionMenu.enabled = false;
     }
 
+    public void StartPause()
+    {
+        
+    }
+
+    public void StopPause()
+    {
+
+    }
+
+
+
+    #region APIs
     public void SetResolution(ResolutionOption option)
     {
         data.Resolution = option;
@@ -85,4 +106,5 @@ public class OptionController : MonoBehaviour
         data.EnableAudio = enableAudio;
 		FileUtility.SaveOptionDataToJson(data);
 	}
+	#endregion
 }
