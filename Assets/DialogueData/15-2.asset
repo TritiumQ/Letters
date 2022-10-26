@@ -24,7 +24,7 @@ MonoBehaviour:
     text: "\u55EF\uFF1F\u8FD8\u6709\u5F20\u5361\u7247\uFF1F"
     isNpc: 0
   - ID: 
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u82B1\u4E0A\u7684\u8D3A\u5361"
     text: "\u6BCD\u4EB2\u8282\u5FEB\u4E50\uFF01\u2014\u2014\u4F60\u6C38\u8FDC\u7684\u5B9D\u5B9D\uFF1A\u5C0F\u67D2\u3002"
     isNpc: 0
