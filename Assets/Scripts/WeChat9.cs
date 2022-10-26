@@ -22,6 +22,7 @@ public class WeChat9 : MonoBehaviour
         if (DialogueUI.Instance.endFlag)
         {
             Debug.Log("TODO-结束");
+            ProcessController.Instance.GoNextScene();
         }
     }
 }
