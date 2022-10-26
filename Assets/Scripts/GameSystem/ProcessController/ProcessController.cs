@@ -33,7 +33,7 @@ public class ProcessController : MonoBehaviour
 
     public void UpdateInf()
     {
-		LoadProcessData();
+		data = LoadProcessData();
 		scene = SceneManager.GetActiveScene();
 		CurrentSceneName = scene.name;
 		NextSceneName = data?.sceneDatas?.Find((SceneData sd) => { return sd.SceneName == CurrentSceneName; })?.nextScene;
@@ -43,12 +43,14 @@ public class ProcessController : MonoBehaviour
     {
         if(NextSceneName != CurrentSceneName && NextSceneName != null && NextSceneName != string.Empty)
         {
+            UpdateInf();
             StartCoroutine(LoadScene(NextSceneName));
         }
     }
 
 	public void GoNextScene(string nextScene)
 	{
+        UpdateInf();
 		if (nextScene != CurrentSceneName && nextScene != null && nextScene != string.Empty)
 		{
 			StartCoroutine(LoadScene(nextScene));
@@ -60,7 +62,7 @@ public class ProcessController : MonoBehaviour
 	#region Utility
 	private ProcessData LoadProcessData()
     {
-        ProcessData data = Resources.Load<ProcessData>("/ProcessData/" + processName);
+        ProcessData data = Resources.Load<ProcessData>("ProcessData/" + processName);
         return data;
     }
 

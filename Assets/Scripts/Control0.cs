@@ -34,7 +34,7 @@ public class Control0 : MonoBehaviour
                     break;
                 case 2:
                     Debug.Log("TODO-结束");
-                    num++;
+                    ProcessController.Instance.GoNextScene();
                     break;
             }
         }
