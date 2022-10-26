@@ -40,6 +40,7 @@ public class Hospital12 : MonoBehaviour
                 case 3:
                     num++;
                     Debug.Log("TODO-结束");
+                    ProcessController.Instance.GoNextScene();
                     break;
             }
         }

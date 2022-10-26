@@ -49,6 +49,7 @@ public class Room13 : MonoBehaviour
                     break;
                 case 4:
                     Debug.Log("TODO-结束");
+                    ProcessController.Instance.GoNextScene();
                     num++;
                     break;
             }

@@ -25,7 +25,6 @@ public class ProcessController : MonoBehaviour
             Destroy(gameObject);
         }
 		UpdateInf();
-	}
 
     #region APIs
 
@@ -43,12 +42,14 @@ public class ProcessController : MonoBehaviour
         UpdateInf();
 		if (NextSceneName != CurrentSceneName && NextSceneName != null && NextSceneName != string.Empty)
         {
+            UpdateInf();
             StartCoroutine(LoadScene(NextSceneName));
         }
     }
 
 	public void GoNextScene(string nextScene)
 	{
+        UpdateInf();
 		if (nextScene != CurrentSceneName && nextScene != null && nextScene != string.Empty)
 		{
 			StartCoroutine(LoadScene(nextScene));
