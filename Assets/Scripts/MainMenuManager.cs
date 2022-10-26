@@ -44,7 +44,7 @@ public class MainMenuManager : MonoBehaviour
 
     void OpenAbout()
     {
-
+        SceneManager.LoadScene("About");
     }
 
 }

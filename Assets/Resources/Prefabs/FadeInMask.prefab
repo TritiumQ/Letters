@@ -90,4 +90,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mask: {fileID: 1823554786890600705}
-  alpha: 2
+  alpha: 1.5
