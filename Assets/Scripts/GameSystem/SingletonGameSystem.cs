@@ -49,6 +49,8 @@ public class SingletonGameSystem : MonoBehaviour
 		DontDestroyOnLoad(instance);
 
         audioController.UpdateVolume();
+
+        IsPause = false;
 	}
 
     private void Update()
@@ -60,28 +62,28 @@ public class SingletonGameSystem : MonoBehaviour
                 if(IsPause)
                 {
                     Debug.Log("ÍË³öÔÝÍ£²Ëµ¥");
-                    StopPause();     
-                }
+                    StopPause();
+					optionSystem?.StopMenu();
+				}
                 else
                 {
 					Debug.Log("ÔÝÍ£²Ëµ¥");
 					StartPause();
+					optionSystem?.StartMenu();
 				}
 			}
 		}
 	}
 
-    private void StartPause()
+    public void StartPause()
     {
         Time.timeScale = 0;
         IsPause = true;
-		optionSystem?.StartMenu();
 	}
 
-    private void StopPause()
+    public void StopPause()
     {
 		Time.timeScale = 1;
-        IsPause = false;  
-        optionSystem?.StopMenu();
+        IsPause = false;
 	}
 }

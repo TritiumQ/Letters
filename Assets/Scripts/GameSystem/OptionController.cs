@@ -27,6 +27,8 @@ public class OptionController : MonoBehaviour
         }
 		data = FileUtility.LoadOptionDataFromJson();
         OptionMenu.enabled = false;
+
+        Return.onClick.AddListener(StopMenu);
     }
 
     public void StartMenu()
@@ -43,6 +45,10 @@ public class OptionController : MonoBehaviour
     public void StopMenu()
     {
         OptionMenu.enabled = false;
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            SingletonGameSystem.Instance?.StopPause();
+        }
 	}
 
 

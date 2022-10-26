@@ -11,12 +11,12 @@ public class SceneData
 {
 	[Header("场景名，唯一识别")]
 	public string SceneName;
-	[Header("场景简述")]
-	public string SceneDescription;
+	//[Header("场景简述")]
+	//public string SceneDescription;
 	[Header("下一场景名")]
 	public string nextScene;
-	[Header("是否为存档点")]
-	public bool IsSavePoint;
+	//[Header("是否为存档点")]
+	//public bool IsSavePoint;
 	[Header("场景类型")]
 	public SceneType SceneType;
 }
