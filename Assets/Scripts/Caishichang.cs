@@ -59,9 +59,9 @@ public class Caishichang : MonoBehaviour
                     DialogueUI.Instance.UpdateMainDialogue(DS2.dialoguePieces[0]);
                     num++;
                     break;
+                case 5:
 
-
-
+                    break;
             }
         }
 

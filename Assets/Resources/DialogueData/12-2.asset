@@ -19,12 +19,12 @@ MonoBehaviour:
     text: "\u554A\uFF01\uFF01\uFF01\u597D\u75BC\uFF01\uFF01\uFF01\uFF01"
     isNpc: 0
   - ID: 1
-    image: {fileID: -339465390, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
+    image: {fileID: -1962426306, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5C0F\u67D2\u5988\u5988"
     text: "\u5C0F\u67D2\uFF01\uFF01\u600E\u4E48\u4E86\uFF1F\u54EA\u91CC\u75BC\uFF1F"
     isNpc: 1
   - ID: 2
-    image: {fileID: -1962426306, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
+    image: {fileID: -339465390, guid: 353396c3c99cc52458735e57d6aed9ee, type: 3}
     speakerName: "\u5C0F\u67D2"
     text: "\u5168\u8EAB.....\u554A......\u90FD......\u5F88\u75BC......"
     isNpc: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   - ID: 4
     image: {fileID: -1962426306, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5C0F\u67D2\u5988\u5988"
-    text: "\u5B9D\u5B9D\u4F60\u5148\u6491\u4E00\u4F1A\uFF0C\u8001\u5988\u53EB\u4E86\u533B\u751F\u8FC7\u6765\u4E86\uFF01\u533B\u751F\u9A6C\u4E0A\u5C31\u5230\uFF01"
+    text: "\u5B9D\u5B9D\u4F60\u575A\u6301\u4F4F\uFF0C\u8001\u5988\u53EB\u4E86\u533B\u751F\u8FC7\u6765\u4E86\uFF01"
     isNpc: 1
   - ID: 5
     image: {fileID: -339465390, guid: abf1da396a977f74a90e93050c1e7562, type: 3}

@@ -18,3 +18,8 @@ MonoBehaviour:
     speakerName: "\u5C0F\u67D2"
     text: "\u8FD9\u91CC......\u662F\u68A6\u5417\uFF1F"
     isNpc: 0
+  - ID: 
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
+    speakerName: 
+    text: "*\u64CD\u63A7\u5C0F\u67D2\u5411\u53F3\u8D70*"
+    isNpc: 0

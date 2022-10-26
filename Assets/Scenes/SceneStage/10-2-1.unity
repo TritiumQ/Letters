@@ -167,12 +167,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 16199616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffacdfa5777d124e8f2f6ba94ceea63, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bd2f87f49084614fbd7eeb8a395dca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   b1: {fileID: 1919295947}
   b2: {fileID: 1316981766}
   b3: {fileID: 951889284}
+  IsClicked: 0
+  DS1: {fileID: 0}
+  DS2: {fileID: 0}
 --- !u!1 &126041958
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ GameObject:
   - component: {fileID: 126041960}
   - component: {fileID: 126041959}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: 10-2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,6 +270,8 @@ RectTransform:
   m_Children:
   - {fileID: 1173127783}
   - {fileID: 16199617}
+  - {fileID: 1153090965}
+  - {fileID: 486401310}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4208519753881920088, guid: bc06a9e3def44274d869218d90cf92f4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4208519753881920088, guid: bc06a9e3def44274d869218d90cf92f4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -521,13 +526,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486401307}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 263.50793, y: -40.728622, z: 85.26911}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 126041962}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &717353674
 GameObject:
@@ -740,6 +745,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 16199618}
+        m_TargetAssemblyTypeName: Control10_Selection, Assembly-CSharp
+        m_MethodName: ButtonOnclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &951889285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,8 +800,16 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 126041962}
     m_Modifications:
+    - target: {fileID: 599682495945148544, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 599682495945148546, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 599682495945148550, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: m_Name
       value: "\u5C0F\u67D2 1"
@@ -799,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 599682495945148551, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 599682495945148551, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1145,6 +1170,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078692456}
   m_CullTransparentMesh: 1
+--- !u!224 &1153090965 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 599682495945148551, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
+  m_PrefabInstance: {fileID: 983099269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162255336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,6 +1385,18 @@ MonoBehaviour:
       - m_Target: {fileID: 907381088}
         m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
         m_MethodName: OpenDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 16199618}
+        m_TargetAssemblyTypeName: Control10_Selection, Assembly-CSharp
+        m_MethodName: ButtonOnclick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1668,6 +1710,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 16199618}
+        m_TargetAssemblyTypeName: Control10_Selection, Assembly-CSharp
+        m_MethodName: ButtonOnclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1495549089}
         m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
         m_MethodName: OpenDialogue

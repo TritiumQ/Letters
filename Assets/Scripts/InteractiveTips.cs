@@ -16,10 +16,17 @@ public class InteractiveTips : MonoBehaviour
 	#region APIs
 	public void StartInteracting(GameObject obj)
     {
-        if(obj != null && obj.GetComponent<InteractiveTrigger>() != null)
+        if(obj != null)
         {
-            //Debug.Log("正在接触" + obj.name);
-            Tips.enabled = true;
+            Debug.Log("正在接触" + obj.name);
+            if(Tips != null)
+            {
+				Tips.enabled = true;
+			}
+            else
+            {
+                Debug.Log("Tips没啦！");
+            }
 		}
     }
 

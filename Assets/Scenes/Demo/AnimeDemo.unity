@@ -725,6 +725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 2993749009667491804, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: processName
+      value: MainProcess
+      objectReference: {fileID: 0}
     - target: {fileID: 5382528565843672005, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.000015258789
