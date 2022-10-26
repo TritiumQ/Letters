@@ -16,7 +16,7 @@ public class ProcessController : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -24,7 +24,8 @@ public class ProcessController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		UpdateInf();
+        UpdateInf();
+    }
 
     #region APIs
 
