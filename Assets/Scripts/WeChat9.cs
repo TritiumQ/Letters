@@ -19,6 +19,9 @@ public class WeChat9 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (DialogueUI.Instance.endFlag)
+        {
+            Debug.Log("TODO-结束");
+        }
     }
 }

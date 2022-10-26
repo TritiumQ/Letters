@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hospital : MonoBehaviour
+public class Control0 : MonoBehaviour
 {
     public Image BG;
-    public DialogueData_SO DS1,DS2;
+    public DialogueData_SO D1, D2;
     private int num = 1;
     private void Awake()
     {
@@ -15,8 +15,8 @@ public class Hospital : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DialogueUI.Instance.UpdateDialogue(DS1);
-        DialogueUI.Instance.UpdateMainDialogue(DS1.dialoguePieces[0]);
+        DialogueUI.Instance.UpdateDialogue(D1);
+        DialogueUI.Instance.UpdateMainDialogue(D1.dialoguePieces[0]);
     }
 
     // Update is called once per frame
@@ -28,8 +28,8 @@ public class Hospital : MonoBehaviour
             {
                 case 1:
                     BG.gameObject.SetActive(true);
-                    DialogueUI.Instance.UpdateDialogue(DS2);
-                    DialogueUI.Instance.UpdateMainDialogue(DS2.dialoguePieces[0]);
+                    DialogueUI.Instance.UpdateDialogue(D2);
+                    DialogueUI.Instance.UpdateMainDialogue(D2.dialoguePieces[0]);
                     num++;
                     break;
                 case 2:
@@ -37,9 +37,6 @@ public class Hospital : MonoBehaviour
                     num++;
                     break;
             }
-            
         }
     }
-
-
 }

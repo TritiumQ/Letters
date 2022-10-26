@@ -7,7 +7,7 @@ public class End15 : MonoBehaviour
 {
     public Image BG2, BG3;
     public DialogueData_SO DS1, DS2, DS3;
-    private bool flag = false,endf=false;
+    private int num = 1;
     private void Awake()
     {
         BG2.gameObject.SetActive(false);
@@ -24,24 +24,30 @@ public class End15 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueUI.Instance.endFlag && !flag && !endf)
+        if (DialogueUI.Instance.endFlag)
         {
-            BG2.gameObject.SetActive(true);
-            DialogueUI.Instance.UpdateDialogue(DS2);
-            DialogueUI.Instance.UpdateMainDialogue(DS2.dialoguePieces[0]);
-            flag = true;
+            switch (num)
+            {
+                case 1:
+                    BG2.gameObject.SetActive(true);
+                    DialogueUI.Instance.UpdateDialogue(DS2);
+                    DialogueUI.Instance.UpdateMainDialogue(DS2.dialoguePieces[0]);
+                    num++;
+                    break;
+                case 2:
+                    BG3.gameObject.SetActive(true);
+                    DialogueUI.Instance.UpdateDialogue(DS3);
+                    DialogueUI.Instance.UpdateMainDialogue(DS3.dialoguePieces[0]);
+                    num++;
+                    break;
+                case 3:
+                    Debug.Log("TODO-结束");
+                    num++;
+                    break;
+            }
+            
+            
         }
-        else if(DialogueUI.Instance.endFlag && flag && !endf)
-        {
-            BG3.gameObject.SetActive(true);
-            DialogueUI.Instance.UpdateDialogue(DS3);
-            DialogueUI.Instance.UpdateMainDialogue(DS3.dialoguePieces[0]);
-            flag = false;
-            endf = true;
-        }
-        else
-        {
-            //TODO 结束
-        }
+        
     }
 }
