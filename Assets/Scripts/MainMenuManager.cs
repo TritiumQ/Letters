@@ -9,18 +9,18 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        Start.onClick.AddListener(StartNewGame);
-        Continue.onClick.AddListener(ContinueGame);
-        Options.onClick.AddListener(OpenOption);
-        Exit.onClick.AddListener(ExitGame);
-        AboutUs.onClick.AddListener(OpenAbout);
+        Start?.onClick.AddListener(StartNewGame);
+        Continue?.onClick.AddListener(ContinueGame);
+        Options?.onClick.AddListener(OpenOption);
+        Exit?.onClick.AddListener(ExitGame);
+        AboutUs?.onClick.AddListener(OpenAbout);
 
 
     }
 
     void StartNewGame()
     {
-
+        ProcessController.Instance?.GoNextScene("0-1");
     }
 
     void ContinueGame()

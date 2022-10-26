@@ -16,9 +16,9 @@ public class Caishichang : MonoBehaviour
         b1.gameObject.SetActive(false);
         b2.gameObject.SetActive(false);
         b3.gameObject.SetActive(false);
-        b4.gameObject.SetActive(false);
-        b5.gameObject.SetActive(false);
-        b6.gameObject.SetActive(false);
+        b4?.gameObject.SetActive(false);
+        b5?.gameObject.SetActive(false);
+        b6?.gameObject.SetActive(false);
     }
 
     void Start()

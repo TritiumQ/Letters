@@ -167,7 +167,10 @@ public class MoveAndAnimationController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bed")) stayBed = true;
+        if (collision.CompareTag("Bed"))
+		{
+			stayBed = true;
+		}
         else stayBed = false;
     }
 }
