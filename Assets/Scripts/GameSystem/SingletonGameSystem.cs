@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,7 @@ public class SingletonGameSystem : MonoBehaviour
     }
 
     #region 相关属性
+    public bool IsPause;
 
 	#endregion
 
@@ -55,8 +57,16 @@ public class SingletonGameSystem : MonoBehaviour
 		{
 			if (SceneManager.GetActiveScene().name != "MainMenu")
 			{
-				Debug.Log("暂停菜单");
-                StartPause();
+                if(IsPause)
+                {
+                    Debug.Log("退出暂停菜单");
+                    StopPause();     
+                }
+                else
+                {
+					Debug.Log("暂停菜单");
+					StartPause();
+				}
 			}
 		}
 	}
@@ -64,12 +74,14 @@ public class SingletonGameSystem : MonoBehaviour
     private void StartPause()
     {
         Time.timeScale = 0;
-		optionSystem?.StartPause();
+        IsPause = true;
+		optionSystem?.StartMenu();
 	}
 
     private void StopPause()
     {
-		Time.timeScale = 0;
-        optionSystem?.StopPause();
+		Time.timeScale = 1;
+        IsPause = false;  
+        optionSystem?.StopMenu();
 	}
 }

@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour
         Start.onClick.AddListener(StartNewGame);
         Continue.onClick.AddListener(ContinueGame);
         Options.onClick.AddListener(OpenOption);
-        //Exit.onClick.AddListener(ExitGame);
+        Exit.onClick.AddListener(ExitGame);
         AboutUs.onClick.AddListener(OpenAbout);
 
 
@@ -30,12 +30,16 @@ public class MainMenuManager : MonoBehaviour
 
     void OpenOption()
     {
-
+        OptionController.Instance.StartMenu();
     }
 
     void ExitGame()
     {
-
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     void OpenAbout()

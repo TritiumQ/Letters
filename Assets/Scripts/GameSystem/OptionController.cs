@@ -7,12 +7,13 @@ using TMPro;
 
 public class OptionController : MonoBehaviour
 {
-    public static OptionController Instance { get; private set; } 
+    public static OptionController Instance { get; private set; }
     public OptionData data { get; private set; }
     public Canvas OptionMenu;
 
 	public Scrollbar musicVolume, effectVolume;
 	public TMP_Dropdown resolution, window;
+    public Button Exit, Return, ReturnToMenu;
 
 	private void Awake()
     {
@@ -28,15 +29,21 @@ public class OptionController : MonoBehaviour
         OptionMenu.enabled = false;
     }
 
-    public void StartPause()
+    public void StartMenu()
     {
-        
+        OptionMenu.enabled = true;
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            //Return.enabled = false;
+            ReturnToMenu.gameObject.SetActive(false);
+            Exit.gameObject.SetActive(false);
+        }
     }
 
-    public void StopPause()
+    public void StopMenu()
     {
-
-    }
+        OptionMenu.enabled = false;
+	}
 
 
 

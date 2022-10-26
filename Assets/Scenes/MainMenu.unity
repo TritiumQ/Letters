@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 2120735101}
   - component: {fileID: 7615156432627496942}
   m_Layer: 5
-  m_Name: MainMune
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1243,6 +1243,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837396500363103267, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837396500363103270, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -24,16 +24,22 @@ public class ProcessController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        LoadProcessData();
-        scene = SceneManager.GetActiveScene();
-        CurrentSceneName = scene.name;
-        //NextSceneName = data.sceneDatas.Find((SceneData sd) => { return sd.SceneName == CurrentSceneName; }).nextScene;
+        UpdateInf();
+
 
     }
 
     #region APIs
 
-    public void GoNextScene()
+    public void UpdateInf()
+    {
+		LoadProcessData();
+		scene = SceneManager.GetActiveScene();
+		CurrentSceneName = scene.name;
+		NextSceneName = data?.sceneDatas?.Find((SceneData sd) => { return sd.SceneName == CurrentSceneName; })?.nextScene;
+	}
+
+	public void GoNextScene()
     {
         if(NextSceneName != CurrentSceneName && NextSceneName != null && NextSceneName != string.Empty)
         {
