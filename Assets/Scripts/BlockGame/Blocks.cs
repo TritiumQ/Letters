@@ -97,6 +97,10 @@ public class Blocks : MonoBehaviour
         }
         else
         {
+            if(controller.curePercent > 0)
+            {
+                controller.curePercent -= 5;
+            }
             Debug.Log("找不到对象");
         }
             

@@ -20,7 +20,7 @@ public class MainMenuManager : MonoBehaviour
 
     void StartNewGame()
     {
-
+        ProcessController.Instance?.GoNextScene("0-1");
     }
 
     void ContinueGame()

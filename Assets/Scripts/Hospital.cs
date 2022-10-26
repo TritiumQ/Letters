@@ -34,6 +34,7 @@ public class Hospital : MonoBehaviour
                     break;
                 case 2:
                     Debug.Log("TODO-结束");
+                    ProcessController.Instance.GoNextScene();
                     num++;
                     break;
             }

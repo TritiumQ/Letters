@@ -143,6 +143,11 @@ public class BlockGameController : MonoBehaviour
 
         }
         cureProcess.text = curePercent.ToString();
+
+        if(curePercent == 100)
+        {
+            ProcessController.Instance.GoNextScene();
+        }
     }
 
 

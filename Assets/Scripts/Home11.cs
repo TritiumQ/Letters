@@ -73,6 +73,7 @@ public class Home11 : MonoBehaviour
             if (num > 3 && Qi.stayBed)
             {
                 Debug.Log("TODO-结束");
+                ProcessController.Instance.GoNextScene();
             }
         }
     }
