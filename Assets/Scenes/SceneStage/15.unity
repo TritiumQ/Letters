@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 895788864}
   - component: {fileID: 895788863}
   m_Layer: 0
-  m_Name: Process
+  m_Name: control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
