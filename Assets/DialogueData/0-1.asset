@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePieces:
   - ID: 0
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u65C1\u767D"
     text: "\u4E00\u4E2A\u5973\u4EBA\u5728\u623F\u95F4\u91CC\u6536\u62FE\u4E1C\u897F"
     isNpc: 0
@@ -34,12 +34,12 @@ MonoBehaviour:
     text: "*\u62C6\u5F00\u4FE1\u5C01*"
     isNpc: 0
   - ID: 4
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5973\u4EBA"
     text: "\u4EB2\u7231\u7684\u8001\u5988......"
     isNpc: 0
   - ID: 5
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5973\u4EBA"
     text: "\u5C0F\u67D2\u8FD9\u5B69\u5B50......\u771F\u662F\u7684......"
     isNpc: 0

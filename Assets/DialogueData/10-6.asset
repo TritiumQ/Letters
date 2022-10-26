@@ -19,7 +19,7 @@ MonoBehaviour:
     text: "\u8001\u677F\uFF0C\u9EBB\u70E6\u6765\u4E2A\u679C\u7BEE"
     isNpc: 0
   - ID: 1
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u6C34\u679C\u5E97\u8001\u677F"
     text: "\u6CA1\u6709\u73B0\u6210\u7684\u5566\uFF01\u9753\u4ED4\u4F60\u81EA\u5DF1\u6311\u5427\uFF0C\u6311\u5B8C\u6211\u5E2E\u4F60\u5305\u8D77\u6765\uFF01"
     isNpc: 0
