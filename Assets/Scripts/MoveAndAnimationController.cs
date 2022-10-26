@@ -15,12 +15,12 @@ public class MoveAndAnimationController : MonoBehaviour
 	[Range(1f, 5f)]
 	public static readonly float RunRate = 1.5f;
 
-	[Header("ÏŞÖÆ¿ÉÒÆ¶¯ÇøÓò")]
+	[Header("é™åˆ¶å¯ç§»åŠ¨åŒºåŸŸ")]
 	public float MoveEdge = 888f;
 	[SerializeField]
 	private float currentX;
 
-	[Header("Ë®Æ½ÒÆ¶¯ÊäÈëÔ´")]
+	[Header("æ°´å¹³ç§»åŠ¨è¾“å…¥æº")]
 	public string HorizontalAxis = "Horizontal";
 
 	[SerializeField]
@@ -33,6 +33,8 @@ public class MoveAndAnimationController : MonoBehaviour
 	public SkeletonGraphic skeleton;
 
 	public AnimationReferenceAsset run, idle, walk;
+
+    public bool stayBed = false;
 
     private void Update()
 	{
@@ -86,7 +88,7 @@ public class MoveAndAnimationController : MonoBehaviour
 		skeleton.AnimationState.SetAnimation(0, nextAnimation, true);
 	}
 	/// <summary>
-	/// ×ªÏò
+	/// è½¬å‘
 	/// </summary>
 	void Turn()
 	{
@@ -103,7 +105,7 @@ public class MoveAndAnimationController : MonoBehaviour
 				bool speedIsNegative = (speed < 0f);
 				facingLeft = speedIsNegative; // Change facing direction whenever speed is not 0.
 			}
-			CurrentState = (speed == 0) ? AnimState.Idle : AnimState.Walking;								//×´Ì¬¼ì²â
+			CurrentState = (speed == 0) ? AnimState.Idle : AnimState.Walking;								//çŠ¶æ€æ£€æµ‹
 			if(CurrentState == AnimState.Walking && Input.GetKeyDown(KeyCode.LeftShift) && EnableRun)
 			{
 				CurrentState = AnimState.Running;
@@ -162,6 +164,12 @@ public class MoveAndAnimationController : MonoBehaviour
 		}
 		yield return null;
 	}
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bed")) stayBed = true;
+        else stayBed = false;
+    }
 }
 
 enum AnimState

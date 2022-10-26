@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePieces:
   - ID: 0
-    image: {fileID: 0}
+    image: {fileID: -459565839, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5C0F\u67D2  "
     text: "\u5514......\u554A......\u662F\u68A6\u554A......"
     isNpc: 0
   - ID: 1
-    image: {fileID: 0}
+    image: {fileID: -459565839, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5C0F\u67D2  "
     text: "*\u770B\u4E86\u4E00\u773C\u624B\u673A*"
     isNpc: 0
   - ID: 2
-    image: {fileID: 0}
+    image: {fileID: -459565839, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: "\u5C0F\u67D2  "
     text: "\u4EC0\u4E48\uFF01\u5DF2\u7ECF10\u70B9\u4E86\uFF1F\u5F97\u8D76\u7D27\u8D77\u5E8A\u624D\u884C\uFF01"
     isNpc: 0
