@@ -29,7 +29,7 @@ MonoBehaviour:
     text: "\u597D\uFF0C\u77E5\u9053\u4E86"
     isNpc: 0
   - ID: 3
-    image: {fileID: 0}
+    image: {fileID: -1765937329, guid: abf1da396a977f74a90e93050c1e7562, type: 3}
     speakerName: 
     text: "\u5C0F\u67D2\u548C\u5988\u5988\u5FD9\u6D3B\u4E861\u4E2A\u591A\u5C0F\u65F6\u4E4B\u540E......"
     isNpc: 0
