@@ -5,17 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
-    public Button Start, Continue, Options, Exit, AboutUs;
+    public Button b_Start, Continue, Options, Exit, AboutUs;
 
     private void Awake()
     {
-        Start?.onClick.AddListener(StartNewGame);
+        b_Start?.onClick.AddListener(StartNewGame);
         Continue?.onClick.AddListener(ContinueGame);
         Options?.onClick.AddListener(OpenOption);
         Exit?.onClick.AddListener(ExitGame);
         AboutUs?.onClick.AddListener(OpenAbout);
+    }
 
-
+    private void Start()
+    {
+        
     }
 
     void StartNewGame()

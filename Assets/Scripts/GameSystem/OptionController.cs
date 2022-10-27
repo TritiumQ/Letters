@@ -29,9 +29,13 @@ public class OptionController : MonoBehaviour
         OptionMenu.enabled = false;
 
         Return.onClick.AddListener(StopMenu);
+        Exit.onClick.AddListener(QuitGame);
 
         resolution.onValueChanged.AddListener((int idx) => SetR(idx));
         window.onValueChanged.AddListener((int idx) => SetW(idx));
+
+        musicVolume.onValueChanged.AddListener((float v) => SetMusicVolume(v * 100f));
+        effectVolume.onValueChanged.AddListener((float v) => SetEffectVolume(v * 100f));
     }
 
     public void StartMenu()
@@ -43,6 +47,11 @@ public class OptionController : MonoBehaviour
             ReturnToMenu.gameObject.SetActive(false);
             Exit.gameObject.SetActive(false);
         }
+        else
+        {
+			ReturnToMenu.gameObject.SetActive(true);
+			Exit.gameObject.SetActive(true);
+		}
     }
 
     public void StopMenu()
@@ -54,14 +63,36 @@ public class OptionController : MonoBehaviour
         }
 	}
 
-    #region APIs
-    void SetR(int idx)
+    public void QuitGame()
     {
-        var option = (ResolutionOption)idx;
-        SetResolution(option);
-    }
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+	}
 
-    public void SetResolution(ResolutionOption option)
+	void SetW(int idx)
+	{
+		if (idx == 0)
+		{
+			SetFullScreen(true);
+		}
+		else if (idx == 1)
+		{
+			SetFullScreen(false);
+		}
+	}
+	void SetR(int idx)
+	{
+		var option = (ResolutionOption)idx;
+		SetResolution(option);
+	}
+    
+
+#region APIs
+
+	public void SetResolution(ResolutionOption option)
     {
         data.Resolution = option;
 		Debug.Log(option);
@@ -91,17 +122,6 @@ public class OptionController : MonoBehaviour
         FileUtility.SaveOptionDataToJson(data);
     }
 
-    void SetW(int idx)
-    {
-        if(idx == 0)
-        {
-            SetFullScreen(true);
-        }
-        else if(idx == 1)
-        {
-            SetFullScreen(false);
-        }
-    }
 
     public void SetFullScreen(bool enableFullScreen)
     {
@@ -134,11 +154,11 @@ public class OptionController : MonoBehaviour
 	/// <summary>
 	/// 
 	/// </summary>
-	/// <param name="enableAudio">Range[0f, 100f]</param>
+	/// <param name="enableAudio">ÊÇ·ñ´ò¿ªÒôÆµ</param>
 	public void SetAudioEnabled(bool enableAudio)
     {
         data.EnableAudio = enableAudio;
 		FileUtility.SaveOptionDataToJson(data);
 	}
-	#endregion
+#endregion
 }
