@@ -87,10 +87,6 @@ public class Caishichang : MonoBehaviour
                 //case 8:
                 //    ProcessController.Instance.GoNextScene();
                 //    break;
-
-                    break;
-
-
             }
         }
 

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &423974238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5643534454415275777, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+  m_PrefabInstance: {fileID: 5837396499905008496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &741313768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1237,6 +1242,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5837396498779543869, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.4420891
+      objectReference: {fileID: 0}
     - target: {fileID: 5837396500028997643, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1252,6 +1261,26 @@ PrefabInstance:
     - target: {fileID: 5837396500363103270, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837396500573900182, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837396500573900182, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837396500573900182, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 423974238}
+    - target: {fileID: 5837396500573900182, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837396500573900182, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7384589553858612748, guid: 03463faa398eea34597a15f0cf35b9bd, type: 3}
       propertyPath: m_AnchoredPosition.y

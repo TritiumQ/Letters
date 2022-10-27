@@ -26,7 +26,6 @@ public class Control10_trigger : MonoBehaviour
 				Control10.Instance?.GoToNextScene(SceneName);
 			}
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

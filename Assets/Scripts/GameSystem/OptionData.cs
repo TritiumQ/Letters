@@ -9,10 +9,17 @@ public class OptionData
 
 	public ResolutionOption Resolution;
 	public bool FullScreen;
-	
-	public OptionData()
-	{ 
 
+	public string Progress;
+
+	public OptionData()
+	{
+		EnableAudio = FileUtility.DefaultEnableAudio;
+		MusicVolume = FileUtility.DefaultMusicVolume;
+		EffectVolume = FileUtility.DefaultEffectVolume;
+		Resolution = FileUtility.DefaultResolution;
+		FullScreen = FileUtility.DefaultFullScreen;
+		Progress = "MainMenu";
 	}
 
 	public OptionData
@@ -21,7 +28,8 @@ public class OptionData
 			float musicVolume,
 			float effectVolume,
 			ResolutionOption resolutionOption,
-			bool fullScreen
+			bool fullScreen,
+			string progress
 		)
 	{
 		EnableAudio = enableAudio;
@@ -29,6 +37,7 @@ public class OptionData
 		EffectVolume = effectVolume;
 		Resolution = resolutionOption;
 		FullScreen = fullScreen;
+		Progress = progress;
 	}
 
 	public void SetResolutionDefault()
@@ -44,6 +53,11 @@ public class OptionData
 		EffectVolume = FileUtility.DefaultEffectVolume;
 	}
 
+	public void SetProgressDefault()
+	{
+		Progress = "MainMenu";
+	}
+
 	public void SetDefault()
 	{
 		EnableAudio = FileUtility.DefaultEnableAudio;
@@ -51,6 +65,7 @@ public class OptionData
 		EffectVolume = FileUtility.DefaultEffectVolume;
 		Resolution = FileUtility.DefaultResolution;
 		FullScreen = FileUtility.DefaultFullScreen;
+		Progress = "MainMenu";
 	}
 }
 

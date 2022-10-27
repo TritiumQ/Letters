@@ -29,6 +29,9 @@ public class OptionController : MonoBehaviour
         OptionMenu.enabled = false;
 
         Return.onClick.AddListener(StopMenu);
+
+        resolution.onValueChanged.AddListener((int idx) => SetR(idx));
+        window.onValueChanged.AddListener((int idx) => SetW(idx));
     }
 
     public void StartMenu()
@@ -51,13 +54,18 @@ public class OptionController : MonoBehaviour
         }
 	}
 
-
-
     #region APIs
+    void SetR(int idx)
+    {
+        var option = (ResolutionOption)idx;
+        SetResolution(option);
+    }
+
     public void SetResolution(ResolutionOption option)
     {
         data.Resolution = option;
-        switch(option)
+		Debug.Log(option);
+		switch (option)
         {
             case ResolutionOption.r1920x1080:
                 Screen.SetResolution(1920, 1080, data.FullScreen);
@@ -83,8 +91,21 @@ public class OptionController : MonoBehaviour
         FileUtility.SaveOptionDataToJson(data);
     }
 
+    void SetW(int idx)
+    {
+        if(idx == 0)
+        {
+            SetFullScreen(true);
+        }
+        else if(idx == 1)
+        {
+            SetFullScreen(false);
+        }
+    }
+
     public void SetFullScreen(bool enableFullScreen)
     {
+        Debug.Log("È«ÆÁ£º" + enableFullScreen);
         data.FullScreen = enableFullScreen;
         Screen.fullScreen = enableFullScreen;
 		FileUtility.SaveOptionDataToJson(data);
