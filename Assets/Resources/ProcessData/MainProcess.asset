@@ -14,122 +14,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneDatas:
   - SceneName: 0-1
-    SceneDescription: 
     nextScene: 1-1
-    IsSavePoint: 0
     SceneType: 1
   - SceneName: 1-1
-    SceneDescription: 
     nextScene: 1-2
-    IsSavePoint: 0
     SceneType: 1
   - SceneName: 1-2
-    SceneDescription: 
     nextScene: 2-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 2-1
-    SceneDescription: 
     nextScene: 3-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 3-1
-    SceneDescription: 
     nextScene: 3-2
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 3-2
-    SceneDescription: 
     nextScene: 3-3
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 3-3
-    SceneDescription: 
     nextScene: 3-4
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 3-4
-    SceneDescription: 
     nextScene: 4-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 4-1
-    SceneDescription: 
     nextScene: 4-2
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 4-2
-    SceneDescription: 
     nextScene: 4-3
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 4-3
-    SceneDescription: 
     nextScene: 5-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 5-1
-    SceneDescription: 
     nextScene: 6-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 6-1
-    SceneDescription: 
     nextScene: 7-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 7-1
-    SceneDescription: 
     nextScene: 7-2
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 7-2
-    SceneDescription: 
     nextScene: 8-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 8-1
-    SceneDescription: 
     nextScene: 9-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 9-1
-    SceneDescription: 
     nextScene: 10-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 10-1
-    SceneDescription: 
     nextScene: 10-2
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 10-2
-    SceneDescription: 
     nextScene: 11-2
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 11-2
-    SceneDescription: 
     nextScene: 12-1
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 12-1
-    SceneDescription: 
-    nextScene: 13-2
-    IsSavePoint: 0
+    nextScene: 12-2
     SceneType: 0
   - SceneName: 13-2
-    SceneDescription: 
     nextScene: 14
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: 14
-    SceneDescription: 
     nextScene: 15
-    IsSavePoint: 0
     SceneType: 0
   - SceneName: MainMenu
-    SceneDescription: 
     nextScene: 0-1
-    IsSavePoint: 0
+    SceneType: 0
+  - SceneName: 15
+    nextScene: MainMenu
+    SceneType: 0
+  - SceneName: 12-2
+    nextScene: 13-2
     SceneType: 0

@@ -23,6 +23,7 @@ public class Control1 : MonoBehaviour
                     num++;
                     break;
                 case 2:
+                    Debug.Log("123");
                     ProcessController.Instance.GoNextScene();
                     break;
             }

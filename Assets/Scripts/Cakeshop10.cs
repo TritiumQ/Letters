@@ -65,6 +65,7 @@ public class Cakeshop10 : MonoBehaviour
                     break;
                 case 5:
                     Debug.Log("TODO-结束");
+                    ProcessController.Instance.GoNextScene();
                     num++;
                     break;
             }
