@@ -11,7 +11,7 @@ public class OptionController : MonoBehaviour
     public OptionData data { get; private set; }
     public Canvas OptionMenu;
 
-	public Scrollbar musicVolume, effectVolume;
+    public Scrollbar musicVolume;//, effectVolume;
 	public TMP_Dropdown resolution, window;
     public Button Exit, Return, ReturnToMenu;
 
@@ -37,12 +37,16 @@ public class OptionController : MonoBehaviour
         window.onValueChanged.AddListener((int idx) => SetW(idx));
 
         musicVolume.onValueChanged.AddListener((float v) => SetMusicVolume(v * 100f));
-        effectVolume.onValueChanged.AddListener((float v) => SetEffectVolume(v * 100f));
+        //effectVolume.onValueChanged.AddListener((float v) => SetEffectVolume(v * 100f));
     }
 
     private void Start()
     {
-        
+        resolution.value = (int)data.Resolution;
+        window.value = data.FullScreen ? 0 : 1;
+
+        musicVolume.value = data.MusicVolume / 100f;
+        //effectVolume.value = data.EffectVolume / 100f;
     }
 
     public void StartMenu()

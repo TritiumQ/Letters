@@ -19,7 +19,7 @@ internal static class FileUtility
         string json = JsonUtility.ToJson(data);
         FileStream fs = new FileStream(DefaultPath, FileMode.OpenOrCreate, FileAccess.Write);
         StreamWriter sw = new StreamWriter(fs);
-        sw.Write(json);
+        sw.WriteLine(json);
         sw.Flush();
         sw.Close();
         fs.Close();

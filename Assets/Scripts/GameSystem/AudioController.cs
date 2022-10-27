@@ -15,10 +15,10 @@ public class AudioController : MonoBehaviour
 	public float MusicVolume;
     [SerializeField,Range(0f,1f)]
     private float TrueMusicVolume;
-    [Range(0f,100f)]
-	public float EffectVolume;
-    [SerializeField,Range(0f,1f)]
-    private float TrueEffectVolume;
+    //[Range(0f,100f)]
+	//public float EffectVolume;
+    //[SerializeField,Range(0f,1f)]
+    //private float TrueEffectVolume;
 
 
 	private void Awake()
@@ -36,14 +36,23 @@ public class AudioController : MonoBehaviour
         audioSource.volume = 0.5f;
     }
 
+    private void Update()
+    {
+        if(OptionController.Instance != null)
+        {
+			UpdateVolume();
+		}
+
+	}
+
     public void UpdateVolume()
     {
-        EnableAudio = SingletonGameSystem.Instance.optionSystem.data.EnableAudio;
-        MusicVolume = SingletonGameSystem.Instance.optionSystem.data.MusicVolume;
-        EffectVolume = SingletonGameSystem.Instance.optionSystem.data.EffectVolume;
+        EnableAudio = OptionController.Instance.data.EnableAudio;
+        MusicVolume = OptionController.Instance.data.MusicVolume;
+        //EffectVolume = SingletonGameSystem.Instance.optionSystem.data.EffectVolume;
 
         TrueMusicVolume = (MusicVolume / 100f);
-        TrueEffectVolume = (EffectVolume / 100f);
+        //TrueEffectVolume = (EffectVolume / 100f);
 
         audioSource.volume = (TrueMusicVolume >= 0f && TrueMusicVolume <= 1f) ? TrueMusicVolume : 0.5f;
     }
@@ -57,7 +66,6 @@ public class AudioController : MonoBehaviour
     {
         if(EnableAudio)
         {
-            UpdateVolume();
 			audioSource.clip = GetAudioClip(name);
 			audioSource.loop = isLoop;
 			audioSource.Play();
@@ -68,15 +76,15 @@ public class AudioController : MonoBehaviour
     /// 播放音效
     /// </summary>
     /// <param name="name">音效名</param>
-    public void PlayeEffectSound(string name)
-    {
-        if(EnableAudio)
-        {
-			UpdateVolume();
-            var volume = (TrueEffectVolume >= 0f && TrueEffectVolume <= 1f) ? TrueEffectVolume : 0.5f;
-            audioSource.PlayOneShot(GetAudioClip(name), volume);
-		}
-    }
+  //  public void PlayeEffectSound(string name)
+  //  {
+  //      if(EnableAudio)
+  //      {
+		//	UpdateVolume();
+  //          var volume = (TrueEffectVolume >= 0f && TrueEffectVolume <= 1f) ? TrueEffectVolume : 0.5f;
+  //          audioSource.PlayOneShot(GetAudioClip(name), volume);
+		//}
+  //  }
 
 
     //暂停播放
