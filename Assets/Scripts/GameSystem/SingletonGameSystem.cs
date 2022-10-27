@@ -32,23 +32,22 @@ public class SingletonGameSystem : MonoBehaviour
 
 	#endregion
 
-	#region 各种管理器
+	//#region 各种管理器
 
-	public OptionController optionSystem { get; private set; }
-    public AudioController audioController { get; private set; }
-    public ProcessController processController { get; private set; }
+	//public OptionController optionSystem { get; private set; }
+ //   public AudioController audioController { get; private set; }
+ //   public ProcessController processController { get; private set; }
 
-	#endregion
+	//#endregion
 
 	private void Awake()
     {
         instance = this;
-        optionSystem = OptionController.Instance;
-        audioController = AudioController.Instance;
-        processController = ProcessController.Instance;
+		//optionSystem = OptionController.Instance;
+		//audioController = AudioController.Instance;
+		//processController = ProcessController.Instance;
+		//audioController.UpdateVolume();
 		DontDestroyOnLoad(instance);
-
-        audioController.UpdateVolume();
 
         IsPause = false;
 	}
@@ -57,33 +56,30 @@ public class SingletonGameSystem : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (SceneManager.GetActiveScene().name != "MainMenu")
+			if (IsPause)
 			{
-                if(IsPause)
-                {
-                    Debug.Log("退出暂停菜单");
-                    StopPause();
-					optionSystem?.StopMenu();
-				}
-                else
-                {
-					Debug.Log("暂停菜单");
-					StartPause();
-					optionSystem?.StartMenu();
-				}
+				StopPause();
+			}
+			else
+			{
+				StartPause();
 			}
 		}
 	}
 
     public void StartPause()
     {
-        Time.timeScale = 0;
+		Debug.Log("暂停菜单");
+		Time.timeScale = 0;
         IsPause = true;
+		OptionController.Instance.StartMenu();
 	}
 
     public void StopPause()
     {
+		Debug.Log("退出暂停菜单");
 		Time.timeScale = 1;
         IsPause = false;
+		OptionController.Instance.StopMenu();
 	}
 }

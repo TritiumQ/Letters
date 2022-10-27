@@ -13,17 +13,25 @@ internal static class FileUtility
     /// </summary>
     /// <param name="data">配置文件数据</param>
     /// <returns></returns>
-    public static bool SaveOptionDataToJson(OptionData data)
+    public static void SaveOptionDataToJson(OptionData data)
     {
-        if(data == null) return false;
+        if (data == null) return;
         string json = JsonUtility.ToJson(data);
-        FileStream fs = new FileStream(DefaultPath, FileMode.OpenOrCreate, FileAccess.Write);
-        StreamWriter sw = new StreamWriter(fs);
-        sw.WriteLine(json);
-        sw.Flush();
-        sw.Close();
-        fs.Close();
-        return true;
+        if (File.Exists(DefaultPath))
+        {
+            File.WriteAllText(DefaultPath, json);
+        }
+        else
+        {
+            File.CreateText(DefaultPath);
+            File.WriteAllText(DefaultPath, json);
+        }
+        //FileStream fs = new FileStream(DefaultPath, FileMode.OpenOrCreate, FileAccess.Write);
+        //StreamWriter sw = new StreamWriter(fs);
+        //sw.WriteLine(json);
+        //sw.Flush();
+        //sw.Close();
+        //fs.Close();
     }
 
     /// <summary>
@@ -35,21 +43,23 @@ internal static class FileUtility
 		OptionData optionData = null;
 		if (File.Exists(DefaultPath))
         {
-			FileStream fs = new FileStream(DefaultPath, FileMode.Open, FileAccess.Read);
 			string json = string.Empty;
-			if (fs.CanRead)
-			{
-				StreamReader sr = new StreamReader(fs);
-				json = sr.ReadToEnd();
-				sr.Close();
-				if (json != string.Empty)
-				{
-					optionData = JsonUtility.FromJson<OptionData>(json);
-				}
-			}
-			fs.Close();
+            json = File.ReadAllText(DefaultPath);
+			optionData = JsonUtility.FromJson<OptionData>(json);
+			//FileStream fs = new FileStream(DefaultPath, FileMode.Open, FileAccess.Read);
+			//if (fs.CanRead)
+			//{
+			//	StreamReader sr = new StreamReader(fs);
+			//	json = sr.ReadToEnd();
+			//	sr.Close();
+			//	if (json != string.Empty)
+			//	{
+			//		optionData = JsonUtility.FromJson<OptionData>(json);
+			//	}
+			//}
+			//fs.Close();
 		}
-        if(optionData == null)
+		if (optionData == null)
         {
             optionData = new OptionData();
             SaveOptionDataToJson(optionData);

@@ -869,6 +869,10 @@ PrefabInstance:
       propertyPath: run
       value: 
       objectReference: {fileID: 11400000, guid: 116ab79a928f230459c61153a551260f, type: 2}
+    - target: {fileID: 599682495945148546, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
+      propertyPath: MoveSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 599682495945148550, guid: 1d296747147c2964f9cbfd07a8cbf309, type: 3}
       propertyPath: m_Name
       value: "\u5C0F\u67D2 1"
@@ -1145,7 +1149,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.9
+  m_fontSize: 47.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

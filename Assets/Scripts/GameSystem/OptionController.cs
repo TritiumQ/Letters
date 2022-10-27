@@ -28,7 +28,7 @@ public class OptionController : MonoBehaviour
 		data = FileUtility.LoadOptionDataFromJson();
         OptionMenu.enabled = false;
 
-        Return.onClick.AddListener(StopMenu);
+        Return.onClick.AddListener(SingletonGameSystem.Instance.StopPause);
         Exit.onClick.AddListener(QuitGame);
         ReturnToMenu.onClick.AddListener(ToMainMenu);
 
@@ -68,10 +68,6 @@ public class OptionController : MonoBehaviour
     public void StopMenu()
     {
         OptionMenu.enabled = false;
-        if(SceneManager.GetActiveScene().name != "MainMenu")
-        {
-            SingletonGameSystem.Instance?.StopPause();
-        }
 	}
 
     public void QuitGame()
@@ -90,6 +86,7 @@ public class OptionController : MonoBehaviour
     {
 		data.Progress = SceneManager.GetActiveScene().name;
 		FileUtility.SaveOptionDataToJson(data);
+        OptionMenu.enabled = false;
         SceneManager.LoadScene("MainMenu");
 	}
 

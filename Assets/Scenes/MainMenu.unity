@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeInMask
       objectReference: {fileID: 0}
+    - target: {fileID: 3141604023197406973, guid: a05f215539faf994da294ef6d7cc2857, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3285197427451379574, guid: a05f215539faf994da294ef6d7cc2857, type: 3}
       propertyPath: alpha
       value: 2

@@ -15,7 +15,6 @@ public class FadeIn : MonoBehaviour
 	private void Start()
 	{
 		StartCoroutine(EnterScene());
-		
 	}
 
 	public IEnumerator EnterScene()
