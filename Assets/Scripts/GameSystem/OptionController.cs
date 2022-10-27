@@ -40,6 +40,11 @@ public class OptionController : MonoBehaviour
         effectVolume.onValueChanged.AddListener((float v) => SetEffectVolume(v * 100f));
     }
 
+    private void Start()
+    {
+        
+    }
+
     public void StartMenu()
     {
         OptionMenu.enabled = true;
@@ -149,6 +154,7 @@ public class OptionController : MonoBehaviour
     /// <param name="musicVolume">Range[0f, 100f]</param>
     public void SetMusicVolume(float musicVolume)
     {
+        Debug.Log("“Ù¿÷“Ù¡ø£∫" + musicVolume);
         data.MusicVolume = musicVolume;
 		FileUtility.SaveOptionDataToJson(data);
 	}
@@ -159,7 +165,8 @@ public class OptionController : MonoBehaviour
 	/// <param name="effectVolume">Range[0f, 100f]</param>
 	public void SetEffectVolume(float effectVolume)
     {
-        data.EffectVolume = effectVolume;
+        Debug.Log("“Ù–ß“Ù¡ø£∫" + effectVolume);
+		data.EffectVolume = effectVolume;
 		FileUtility.SaveOptionDataToJson(data);
 	}
 

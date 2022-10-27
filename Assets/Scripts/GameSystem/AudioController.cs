@@ -53,7 +53,7 @@ public class AudioController : MonoBehaviour
     /// </summary>
     /// <param name="name">背景音乐文件名</param>
     /// <param name="isLoop">是否开启循环</param>
-    public void PlayMusic(string name, bool isLoop = false)
+    public void PlayMusic(string name, bool isLoop = true)
     {
         if(EnableAudio)
         {
