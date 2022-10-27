@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da8d6e76d40c5c4e8b5f87984188f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start: {fileID: 1123957443}
+  b_Start: {fileID: 1123957443}
   Continue: {fileID: 1808591164}
   Options: {fileID: 1396687729}
   Exit: {fileID: 1095531183}

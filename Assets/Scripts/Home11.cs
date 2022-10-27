@@ -31,7 +31,10 @@ public class Home11 : MonoBehaviour
     {
         DialogueUI.Instance.UpdateDialogue(D1);
         DialogueUI.Instance.UpdateMainDialogue(D1.dialoguePieces[0]);
-    }
+
+        AudioController.Instance?.PlayMusic("n46");
+
+	}
 
     // Update is called once per frame
     void Update()

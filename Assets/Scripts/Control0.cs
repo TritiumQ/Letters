@@ -30,7 +30,8 @@ public class Control0 : MonoBehaviour
                     BG.gameObject.SetActive(true);
                     DialogueUI.Instance.UpdateDialogue(D2);
                     DialogueUI.Instance.UpdateMainDialogue(D2.dialoguePieces[0]);
-                    num++;
+					AudioController.Instance?.PlayMusic("Ambiance_City_Traffic_01");
+					num++;
                     break;
                 case 2:
                     Debug.Log("TODO-结束");

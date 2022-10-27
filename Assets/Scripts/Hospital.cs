@@ -17,6 +17,8 @@ public class Hospital : MonoBehaviour
     {
         DialogueUI.Instance.UpdateDialogue(DS1);
         DialogueUI.Instance.UpdateMainDialogue(DS1.dialoguePieces[0]);
+
+        AudioController.Instance.PlayMusic("See The Light_Piano Loop_01");
     }
 
     // Update is called once per frame

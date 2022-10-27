@@ -8,8 +8,9 @@ public class Control2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        AudioController.Instance.PlayMusic("Casual - Level 1 (Loop_01)");
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -19,7 +20,7 @@ public class Control2 : MonoBehaviour
             switch (num)
             {
                 case 1:
-                    ProcessController.Instance.GoNextScene();
+                    ProcessController.Instance?.GoNextScene();
                     break;
             }
         }

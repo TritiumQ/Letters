@@ -10,7 +10,8 @@ public class InteractiveTips : MonoBehaviour
 
     private void Awake()
     {
-		Tips.enabled = false;
+        if(Tips != null)
+		    Tips.enabled = false;
     }
 
 	#region APIs
@@ -32,7 +33,8 @@ public class InteractiveTips : MonoBehaviour
 
 	public void StopInteracting()
     {
-        Tips.enabled = false;
+		if (Tips != null)
+			Tips.enabled = false;
 	}
 	#endregion
 

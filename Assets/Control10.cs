@@ -37,6 +37,8 @@ public class Control10 : MonoBehaviour
 			DialogueUI.Instance.UpdateMainDialogue(ds.dialoguePieces[0]);
 		}
 		IsNew = false;
+
+		AudioController.Instance.PlayMusic("n148");
 	}
 
 	private void Update()

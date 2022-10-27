@@ -18,7 +18,10 @@ public class Control6 : MonoBehaviour
         b1.gameObject.SetActive(false);
         meal.gameObject.SetActive(false);
         zhenban.gameObject.SetActive(false);
-    }
+
+        AudioController.Instance.PlayMusic("Casual - Level 1 (Loop_02)");
+
+	}
 
     // Update is called once per frame
     void Update()

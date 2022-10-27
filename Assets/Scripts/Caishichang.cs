@@ -29,8 +29,9 @@ public class Caishichang : MonoBehaviour
 
     void Start()
     {
+        AudioController.Instance.PlayMusic("Ambiance_ArcticStorm_01");
 
-    }
+	}
 
     // Update is called once per frame
     void Update()

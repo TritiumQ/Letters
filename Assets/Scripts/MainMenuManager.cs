@@ -18,7 +18,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        
+        AudioController.Instance?.PlayMusic("n75");
     }
 
     void StartNewGame()
@@ -28,8 +28,16 @@ public class MainMenuManager : MonoBehaviour
 
     void ContinueGame()
     {
-
-    }
+        var phase = OptionController.Instance?.data.Progress;
+        if(phase!= null && phase != "MainMenu")
+        {
+			ProcessController.Instance?.GoNextScene(phase);
+		}
+        else
+        {
+            //Continue.interactable = false;
+        }
+	}
 
     void OpenOption()
     {

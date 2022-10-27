@@ -30,6 +30,8 @@ public class OptionController : MonoBehaviour
 
         Return.onClick.AddListener(StopMenu);
         Exit.onClick.AddListener(QuitGame);
+        ReturnToMenu.onClick.AddListener(ToMainMenu);
+
 
         resolution.onValueChanged.AddListener((int idx) => SetR(idx));
         window.onValueChanged.AddListener((int idx) => SetW(idx));
@@ -65,11 +67,21 @@ public class OptionController : MonoBehaviour
 
     public void QuitGame()
     {
+        data.Progress = SceneManager.GetActiveScene().name;
+		FileUtility.SaveOptionDataToJson(data);
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+		UnityEditor.EditorApplication.isPlaying = false;
+        
 #else
         Application.Quit();
 #endif
+	}
+
+    public void ToMainMenu()
+    {
+		data.Progress = SceneManager.GetActiveScene().name;
+		FileUtility.SaveOptionDataToJson(data);
+        SceneManager.LoadScene("MainMenu");
 	}
 
 	void SetW(int idx)

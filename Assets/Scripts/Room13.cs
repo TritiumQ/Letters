@@ -21,6 +21,8 @@ public class Room13 : MonoBehaviour
     {
         DialogueUI.Instance.UpdateDialogue(DS1);
         DialogueUI.Instance.UpdateMainDialogue(DS1.dialoguePieces[0]);
+
+        AudioController.Instance.PlayMusic("n60");
     }
 
     // Update is called once per frame
@@ -31,7 +33,8 @@ public class Room13 : MonoBehaviour
             switch (num)
             {
                 case 1:
-                    BG.gameObject.SetActive(true);
+					AudioController.Instance.PlayMusic("Real Pianos - Defeat");
+					BG.gameObject.SetActive(true);
                     DialogueUI.Instance.UpdateDialogue(DS2);
                     DialogueUI.Instance.UpdateMainDialogue(DS2.dialoguePieces[0]);
                     num++;
