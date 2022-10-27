@@ -73,6 +73,7 @@ public class Control10 : MonoBehaviour
     {
 		// TODO 10-2 当前剧情完成，前往下一节
 		Debug.Log("走咯~");
+		ProcessController.Instance.GoNextScene();
     }
 
 	public void GoToNextScene(string sceneName)

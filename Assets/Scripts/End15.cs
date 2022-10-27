@@ -42,6 +42,7 @@ public class End15 : MonoBehaviour
                     break;
                 case 3:
                     Debug.Log("TODO-结束");
+                    ProcessController.Instance.GoNextScene();
                     num++;
                     break;
             }
